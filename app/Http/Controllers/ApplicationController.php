@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Application;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
@@ -12,9 +13,13 @@ class ApplicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $categories = Category::all();
+        // dd($categories);
+        $applications = Application::orderBy('id','DESC')->paginate(5);
+        return view('admin.application.index',compact('applications','categories'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +29,7 @@ class ApplicationController extends Controller
      */
     public function create()
     {
-        //
+        return view('application.index');
     }
 
     /**
@@ -35,7 +40,10 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $applications = $request->all();
+      $application = Application::create($applications);
+      return redirect()->route('application.index')
+                      ->with('success','Application  created successfully');
     }
 
     /**

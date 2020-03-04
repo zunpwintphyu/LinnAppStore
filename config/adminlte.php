@@ -150,7 +150,7 @@ return [
         ],
         [
             'text' => 'Add New App',
-            'url'  => 'settings',
+            'url'  => 'application',
             'icon' => 'fas fa-folder-plus',
         ],
         // [

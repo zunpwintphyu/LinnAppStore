@@ -140,17 +140,17 @@ return [
         ],
         [
             'text'        => 'Dashboard',
-            'url'         => 'admin/dashboard',
+            'url'         => 'dashboard',
             'icon'        => 'fas fa-tachometer-alt',
         ],
         [
             'text' => 'Category',
-            'url'  => 'admin/settings',
+            'url'  => 'category',
             'icon' => 'fab fa-google-play',
         ],
         [
             'text' => 'Add New App',
-            'url'  => 'admin/settings',
+            'url'  => 'settings',
             'icon' => 'fas fa-folder-plus',
         ],
         // [
@@ -297,21 +297,21 @@ return [
                 ],
             ],
         ],
-        [
-            'name' => 'Pace',
-            'active' => true,
-            'files' => [
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
-                ],
-            ],
-        ],
+        // [
+        //     'name' => 'Pace',
+        //     'active' => true,
+        //     'files' => [
+        //         [
+        //             'type' => 'css',
+        //             'asset' => false,
+        //             'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
+        //         ],
+        //         [
+        //             'type' => 'js',
+        //             'asset' => false,
+        //             'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+        //         ],
+        //     ],
+        // ],
     ],
 ];

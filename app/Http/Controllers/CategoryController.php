@@ -12,9 +12,14 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // $categories = Category::all();
+        // return view('admin.category.index',compact('categories'));
+
+        $categories = Category::orderBy('id','DESC')->paginate(5);
+        return view('admin.category.index',compact('categories'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.index');
     }
 
     /**
@@ -35,7 +40,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $input = $request->all();
+      $category = Category::create($input);
+      return redirect()->route('category.index')
+                      ->with('success','Category  created successfully');
+     
     }
 
     /**
@@ -46,7 +55,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('category.index');
     }
 
     /**
@@ -80,6 +89,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        Category::find($id)->delete();
+        return redirect()->route('category.index')
+                        ->with('success','Category deleted successfully');
     }
 }

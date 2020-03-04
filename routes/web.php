@@ -22,3 +22,5 @@ Route::get('/dashboard', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/category', 'CategoryController@index')->name('category.index');
+Route::post('/category/store', 'CategoryController@store')->name('category.store');

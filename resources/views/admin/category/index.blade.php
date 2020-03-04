@@ -37,12 +37,12 @@
                 <tr>
                     <td><h4>{{ $cat->category_name }}</h4></td>
                     <td>
-                        {{-- <form action="{{ route('branch.destroy', $branch->id)}}" method="post"> --}}
+                        <form action="{{ route('category.destroy',$cat->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <a class="btn btn-primary-sm  glyphicon glyphicon-edit"  ></a>
+                          <a class="btn btn-primary-sm  glyphicon glyphicon-edit" ></a>
                           <button class="btn btn-primary-sm glyphicon glyphicon-trash" onclick=" confirm('Are you sure?')" type="submit"></button>
-                        {{-- </form> --}}
+                        </form>
                     </td>
                 </tr> 
                 @endforeach

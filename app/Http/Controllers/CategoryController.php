@@ -64,9 +64,10 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        // $category = Category::find($id);
+        // return view('category.index',compact('category'));
     }
 
     /**
@@ -76,9 +77,17 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        // $this->validate($request, [
+        //     'category_name' => 'required',
+        // ]);
+        // $input = $request->all();
+        // $category = Category::find($id);
+        // $category->update($input);
+
+        // return redirect()->route('category.index')
+        //                 ->with('success','Category updated successfully');
     }
 
     /**
@@ -87,7 +96,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
         Category::find($id)->delete();
         return redirect()->route('category.index')

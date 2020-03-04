@@ -29,8 +29,8 @@
     <div class="col-md-4">
         <table class="table table-hover">
             <thead>
-                <th><h2>Category Name</h2></th>
-                <th><h2>Action</h2></th>
+                <th>Category Name</th>
+                <th>Action</th>
             </thead>
             <tbody>
                 @foreach ($categories as $cat )
@@ -40,8 +40,8 @@
                         <form action="{{ route('category.destroy',$cat->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <a class="btn btn-primary-sm  glyphicon glyphicon-edit" ></a>
-                          <button class="btn btn-primary-sm glyphicon glyphicon-trash" onclick=" confirm('Are you sure?')" type="submit"></button>
+                          <a class="btn  btn-sm  glyphicon glyphicon-edit" ></a>
+                          <button class="btn  btn-sm glyphicon glyphicon-trash" onclick=" confirm('Are you sure?')" type="submit"></button>
                         </form>
                     </td>
                 </tr> 
@@ -49,7 +49,9 @@
                 
             </tbody>
         </table>
-        {!! $categories->render() !!}
+        <div class="row">
+            {!! $categories->render() !!}
+        </div>
     </div>
 </div>
 @stop

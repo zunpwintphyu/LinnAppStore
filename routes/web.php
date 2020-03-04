@@ -22,4 +22,5 @@ Route::get('/', function () {
 
 Route::get('/category', 'CategoryController@index')->name('category.index');
 Route::post('/category/store', 'CategoryController@store')->name('category.store');
+Route::get('/category/edit/{id}', 'CategoryController@edit')->name('category.edit');
 Route::delete('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');

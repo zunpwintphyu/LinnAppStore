@@ -40,7 +40,7 @@
                         <form action="{{ route('category.destroy',$cat->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <a class="btn  btn-sm  glyphicon glyphicon-edit" ></a>
+                          <a class="btn  btn-sm  glyphicon glyphicon-edit"></a>
                           <button class="btn  btn-sm glyphicon glyphicon-trash" onclick=" confirm('Are you sure?')" type="submit"></button>
                         </form>
                     </td>

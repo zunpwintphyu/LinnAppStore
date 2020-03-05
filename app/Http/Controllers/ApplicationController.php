@@ -121,7 +121,7 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+        // dd(public_path() . '/uploads/application/');
         $application = Application::findOrFail($id);
 
         // dd($application);
@@ -155,6 +155,7 @@ class ApplicationController extends Controller
         $fileup = $application->file;
         if ($application->file = $request->file('file')) {
             $extension = $application->file->getClientOriginalExtension();
+
             $destinationPath = public_path() . '/uploads/application/';
             $safeName = str_random(10) . '.' . $extension;
             $file->file->move($destinationPath, $safeName);

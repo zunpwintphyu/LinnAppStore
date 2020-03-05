@@ -31,4 +31,4 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 
-Route::get('donwload-file', 'ApplicationController@downloadFile');
+Route::get('application/download/{id}', 'ApplicationController@downloadFile');

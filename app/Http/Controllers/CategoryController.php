@@ -40,6 +40,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'category_name' => 'required',
+        ]);
       $input = $request->all();
       $category = Category::create($input);
       return redirect()->route('category.index')
@@ -66,8 +69,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        // dd($id);
         $category = Category::find($id);
-        return view('category.index',compact('category'));
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
@@ -79,15 +83,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $this->validate($request, [
-        //     'category_name' => 'required',
-        // ]);
-        // $input = $request->all();
-        // $category = Category::find($id);
-        // $category->update($input);
+        $this->validate($request, [
+            'category_name' => 'required',
+        ]);
+        $input = $request->all();
+        $category = Category::find($id);
+        $category->update($input);
 
-        // return redirect()->route('category.index')
-        //                 ->with('success','Category updated successfully');
+        return redirect()->route('category.index')
+                        ->with('success','Category updated successfully');
     }
 
     /**

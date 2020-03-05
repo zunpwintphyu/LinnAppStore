@@ -18,6 +18,8 @@
     <div class="row">
         <div class="col-md-4" >
             <input type="text" name="category_name" class="form-control" id="cat_name" style="color:blue;font-size:18px;" placeholder="Category Name">
+            
+            <span style="color:red">{!! $errors->first('category_name','<small>:message</small>')!!} </span>
         </div>
         <div class="col-md-1">
             <button class="btn btn-success btn-sm form-control" type="submit"><span class="glyphicon glyphicon-plus"></span>ADD</button> 
@@ -40,7 +42,7 @@
                         <form action="{{ route('category.destroy',$cat->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <a class="btn  btn-sm  glyphicon glyphicon-edit"></a>
+                          <a class="btn  btn-sm  glyphicon glyphicon-edit" href="{{ route('category.edit',$cat->id)}}"></a>
                           <button class="btn  btn-sm glyphicon glyphicon-trash" onclick=" confirm('Are you sure?')" type="submit"></button>
                         </form>
                     </td>

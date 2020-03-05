@@ -1,21 +1,57 @@
-{{-- resources/views/admin/dashboard.blade.php --}}
-
 @extends('adminlte::page')
+
+
 
 @section('title', 'Dashboard')
 
+
+
 @section('content_header')
-    <h1>Dashboard</h1>
+<div class="row">
+    <div>
+    <h3>Linn App Store</h3>
+    </div>
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-right">
+            <i class="fas fa-fw fa-clock"> </i> {{ date('Y-m-d H:i:s') }}
+        </div>
+    </div>
+</div>
+
 @stop
+
+
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+  <div class="content">
+      {{dd($applications)}}
+    @foreach($applications as $data)
+            <img src="{{ asset('/uploads/application/'.$data->logo)}}" alt="Icon" 
+            style="width:80px; height:80px;">
+           
+
+            {{-- <img src="{{ asset('/uploads/application/'.$category->logo)}}" alt="employee_photo" 
+            style="width:80px; height:80px;">
+            <img src="{{ asset('/uploads/application/icon.webp')}}" alt="employee_photo" 
+            style="width:80px; height:80px;"> --}}
+    @endforeach
+      <br>
+   
+  </div>
 @stop
+
+
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+
+    
+
 @stop
 
+
+
 @section('js')
-    <script> console.log('Hi!'); </script>
+
+   
+
 @stop

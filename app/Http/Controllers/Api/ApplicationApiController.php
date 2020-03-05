@@ -17,11 +17,11 @@ class ApplicationApiController extends BaseController
      */
     public function index(Request $request)
     {
-        $a = $request->all();
-        $app = new Application();
+        // $a = $request->all();
+        // $app = new Application();
 
-        $applications = $app->orderBy('created_at','desc')->get();
-
+         $applications = Application::where('category_id',$request->id)->orderBy('id', 'desc')->get();
+        // dd($loans);
         return $this->sendResponse($applications->toArray(), 'Application retrieved successfully.');
     }
 

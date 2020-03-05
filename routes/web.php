@@ -11,19 +11,21 @@
 |
 */
 
+Auth::routes();
 
-Route::get('/', function () {
-    return view('dashboard');
-});
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function(){
+    return redirect()->route('dashboard');
+})->name('home');
 
 //Application Route
-Route::resource('/application','ApplicationController');
-Route::get('/category', 'CategoryController@index')->name('category.index');
-Route::post('/category/store', 'CategoryController@store')->name('category.store');
-Route::get('/category/edit/{id}', 'CategoryController@edit')->name('category.edit');
-Route::put('/category/update/{id}', 'CategoryController@update')->name('category.update');
-Route::delete('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    Route::resource('/application','ApplicationController');
+    Route::get('/category', 'CategoryController@index')->name('category.index');
+    Route::post('/category/store', 'CategoryController@store')->name('category.store');
+    Route::get('/category/edit/{id}', 'CategoryController@edit')->name('category.edit');
+    Route::put('/category/update/{id}', 'CategoryController@update')->name('category.update');
+    Route::delete('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
+});

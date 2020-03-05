@@ -95,14 +95,8 @@
             </div>
         </div>
        <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow=""
-                aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                        0%
-            </div>
-        </div>
-        <br />
-        <div id="success">
-
+            <div class="bar"></div >
+            <div class="percent">0%</div >
         </div>
     </form>
     <br>
@@ -131,15 +125,15 @@
                         {{$application->viewcategory->category_name}}
                     </td>
                     <td>
-                        <form action="{{ route('application.destroy', $application->id)}}" method="post"
+                      <!--   <form action="{{ route('application.destroy', $application->id)}}" method="post"
                             onsubmit="return confirm('Do you want to delete?');">
                             @csrf
-                            @method('DELETE')
+                            @method('DELETE') -->
                             <a href="{{route('application.edit',$application->id)}}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit" title="Edit"></i></a>
-                            <button class="btn btn-sm btn-danger btn-sm">
+                            <button class="btn btn-sm btn-danger btn-sm deleteRecord" data-id="{{$application->id }}">
                                 <i class="fa fa-fw fa-trash" title="Delete"></i></button>
-                        </form>
+                        <!-- </form> -->
                     </td>
                 </tr>
                 @endforeach
@@ -149,6 +143,7 @@
         </table>
         {{ $applications->links() }}
     </div>
+    <input type="hidden" id="token" value="{{ csrf_token() }}">
 </div>
 @stop
 @section('css')
@@ -166,40 +161,61 @@ $(document).ready(function() {
         $(".alert-success").fadeOut(3000);
     }, 3000);
 
-    // function validate(formData, jqForm, options) {
-    //     var form = jqForm[0];
-    //     if (!form.file.value) {
-    //         alert('File not found');
-    //         return false;
-    //     }
-    // }
+ 
+    (function() {
+ 
+    var bar = $('.bar');
+    var percent = $('.percent');
+    var status = $('#status');
+ 
+    $('form').ajaxForm({
+        // beforeSubmit: validate,
+        beforeSend: function() {
+            status.empty();
+            var percentVal = '0%';
+            var posterValue = $('input[name=file]').fieldValue();
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        success: function() {
+            var percentVal = 'Wait, Saving';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        complete: function(xhr) {
+            status.html(xhr.responseText);
+            alert('Uploaded Successfully');
+            window.location.href = "application";
+        }
+    });
+     
+    })();
 
-    // $('form').ajaxForm({
-    //   beforeSend:function(){
-    //     $('#success').empty();
-    //   },
-    //   uploadProgress:function(event, position, total, percentComplete)
-    //   {
-    //     $('.progress-bar').text(percentComplete + '%');
-    //     $('.progress-bar').css('width', percentComplete + '%');
-    //   },
-    //   success:function(data)
-    //   {
-    //     if(data.errors)
-    //     {
-    //       $('.progress-bar').text('0%');
-    //       $('.progress-bar').css('width', '0%');
-    //       $('#success').html('<span class="text-danger"><b>'+data.errors+'</b></span>');
-    //     }
-    //     if(data.success)
-    //     {
-    //       $('.progress-bar').text('Uploaded');
-    //       $('.progress-bar').css('width', '100%');
-    //       $('#success').html('<span class="text-success"><b>'+data.success+'</b></span><br /><br />');
-    //       $('#success').append(data.image);
-    //     }
-    //   }
-    // });
-});
+    $(".deleteRecord").click(function(){
+        var id = $(this).data("id");
+        var token = $('#token').val();
+        var confirmation = confirm("are you sure you want to delete?");
+        if (confirmation) {
+             $.ajax(
+                    {
+                        url: "application/"+id,
+                        type: 'DELETE',
+                        data: {
+                            "id": id,
+                            "_token": token,
+                        },
+                        success: function (){
+                            console.log("it Works");
+                        }
+                    });
+            }
+           
+        });
+    });
 </script>
 @stop

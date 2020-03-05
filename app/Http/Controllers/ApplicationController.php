@@ -39,7 +39,7 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        // dd(public_path() . '/uploads/application/');
         $rules = [
             'category_id' => 'required',
             'name' => 'required',
@@ -64,6 +64,10 @@ class ApplicationController extends Controller
             $safeName = str_random(10) . '.' . $extension;
             $file->move($destinationPath, $safeName);
             $fileup = $safeName;
+            // $output = array(
+            // 'success' => 'Image uploaded successfully'
+            // );
+            // return response()->json($output);
         }
 
         $photo = "";
@@ -81,33 +85,6 @@ class ApplicationController extends Controller
                     'file' =>$fileup,
                     'logo' => $photo
                 ]);
-        // dd($fileupload);
-        // $structure = "uploads/application/";
-        // $photo = "";
-
-        // if ($request->file('photo')) {
-
-        //     $file = $request->file('photo');
-
-        //     if ($file->getClientOriginalExtension() == "jpg" || $file->getClientOriginalExtension() == "jpeg" || $file->getClientOriginalExtension() == "JPG" || $file->getClientOriginalExtension() == "png" || $file->getClientOriginalExtension() == "PNG" || $file->getClientOriginalExtension() == "gif" || $file->getClientOriginalExtension() == "GIF") {
-
-        //         $photo = $file->getClientOriginalName();
-        //         $file->move($structure, $photo);
-        //     }
-        // }
-
-        // $fileup = "";
-        // if ($application->file = $request->file('file')) {
-        //     $extension = $application->file->getClientOriginalExtension();
-        //     $destinationPath = public_path() . '/uploads/application/';
-        //     $safeName = str_random(10) . '.' . $extension;
-        //     $file->file->move($destinationPath, $safeName);
-        //     $fileup = $safeName;
-        // }
-
-       
-        // $applications = $request->all();
-        // $application = Application::create($applications);
         return redirect()->route('application.index')
             ->with('success', 'Application  created successfully');
     }
@@ -211,11 +188,15 @@ class ApplicationController extends Controller
      * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        Application::find($id)->delete();
+        Application::find($request->id)->delete();
         return redirect()->route('application.index')
             ->with('success', 'Application deleted successfully');
+        //  return response()->json([
+        //     'success' => 'Application deleted successfully!'
+        // ]);
+
 
     }
 }

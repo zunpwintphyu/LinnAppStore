@@ -22,4 +22,4 @@ Route::get('/categories','CategoryApiController@list');
 //Application API
 Route::get('applications/{id}', 'Api\ApplicationApiController@index');
 
-Route::get('application/download/{id}', 'ApplicationApiController@downloadFile');
+Route::get('application/download/{id}', 'Api\ApplicationApiController@downloadFile');

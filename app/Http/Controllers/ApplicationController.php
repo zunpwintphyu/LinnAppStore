@@ -202,11 +202,10 @@ class ApplicationController extends Controller
     }
 
 
-    public function downloadFile()
+    public function downloadFile($id)
     {
         
         $app = Application::findOrFail($id);
-            
         $myFile = public_path()."/uploads/application/".$app->file;
         $headers = ['Content-Type: application/*'];
         $newName = $app->name.'.apk';

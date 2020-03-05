@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
+//Application Route
+Route::resource('/application','ApplicationController');
 Route::get('/category', 'CategoryController@index')->name('category.index');
 Route::post('/category/store', 'CategoryController@store')->name('category.store');
 Route::get('/category/edit/{id}', 'CategoryController@edit')->name('category.edit');

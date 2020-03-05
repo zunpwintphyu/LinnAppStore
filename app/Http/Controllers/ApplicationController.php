@@ -54,6 +54,34 @@ class ApplicationController extends Controller
             'logo.required' => 'Please Choose Application Logo',
         ];
 
+         $this->validate($request, $rules, $customMessage);
+
+
+        $fileup = "";
+        if ($file = $request->file('file')) {
+            $extension = $file->getClientOriginalExtension();
+            $destinationPath = public_path() . '/uploads/application/';
+            $safeName = str_random(10) . '.' . $extension;
+            $file->move($destinationPath, $safeName);
+            $fileup = $safeName;
+        }
+
+        $photo = "";
+        if ($file = $request->file('logo')) {
+            $extension = $file->getClientOriginalExtension();
+            $destinationPath = public_path() . '/uploads/application/';
+            $safeName = str_random(10) . '.' . $extension;
+            $file->move($destinationPath, $safeName);
+            $photo = $safeName;
+        }
+
+        $fileupload = Application::create([
+                    'category_id'=> $request->category_id,
+                    'name'=>$request->name,
+                    'file' =>$fileup,
+                    'logo' => $photo
+                ]);
+        // dd($fileupload);
         // $structure = "uploads/application/";
         // $photo = "";
 
@@ -77,10 +105,9 @@ class ApplicationController extends Controller
         //     $fileup = $safeName;
         // }
 
-        $this->validate($request, $rules, $customMessage);
-
-        $applications = $request->all();
-        $application = Application::create($applications);
+       
+        // $applications = $request->all();
+        // $application = Application::create($applications);
         return redirect()->route('application.index')
             ->with('success', 'Application  created successfully');
     }
@@ -121,7 +148,7 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+        // dd(public_path() . '/uploads/application/');
         $application = Application::findOrFail($id);
 
         // dd($application);
@@ -155,6 +182,7 @@ class ApplicationController extends Controller
         $fileup = $application->file;
         if ($application->file = $request->file('file')) {
             $extension = $application->file->getClientOriginalExtension();
+
             $destinationPath = public_path() . '/uploads/application/';
             $safeName = str_random(10) . '.' . $extension;
             $file->file->move($destinationPath, $safeName);

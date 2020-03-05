@@ -44,7 +44,7 @@
 </div>
 @endif
 <div class="justify-content-center">
-    <form action="{{ route('application.store')}}" method="post">
+    <form action="{{ route('application.store')}}" method="post" enctype="multipart/form-data">
 
         @csrf
         <div class="row">
@@ -112,13 +112,13 @@
         <table class="table table-hover">
             <thead>
                 <th>
-                    <h4>Application Name</h4>
+                    Application Name
                 </th>
                 <th>
-                    <h4>Category</h4>
+                    Category
                 </th>
                 <th>
-                    <h4>Action</h4>
+                    Action
                 </th>
             </thead>
             <tbody>

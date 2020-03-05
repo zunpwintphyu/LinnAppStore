@@ -45,34 +45,32 @@
             </div> --}}
         {{-- </form> --}}
         <div class="search-container">
-            <form action="{{ url('category') }}" method="GET">
-              <input type="text" placeholder="Search.." name="category_name" value="{{ $category_name}}">
+            <form action="{{ url('category') }}" method="GET" >
+              <input type="text" placeholder="Search.." name="category_name" value="{{ $category_name}}" >
               <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div><br>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-10">
         <table class="table table-hover">
             <thead>
                 <th>Category Name</th>
-                <th><center>Logo</center></th>
-                <th><center>Action</center></th>
+                <th>Logo</th>
+                <th>Action</th>
             </thead>
             <tbody>
                 @foreach ($categories as $cat )
                 <tr>
                     <td>{{ $cat->category_name }}</td>
                     <td>
-                    <center>
-                        <img src="{{ asset('uploads/category/'.$cat->logo) }}" alt="image"  style="width:20%;alignItem:center">
-                    </center>
+                        <img src="{{ asset('uploads/category/'.$cat->logo) }}" alt="image"  style="width:10%;alignItem:center">
                     </td>
                     <td>
                         <form action="{{ route('category.destroy',$cat->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <a class="btn  btn-sm  glyphicon glyphicon-edit" href="{{ route('category.edit',$cat->id)}}"></a>
-                          <button class="btn  btn-sm glyphicon glyphicon-trash" onclick=" confirm('Are you sure?')" type="submit"></button>
+                          <a class="btn  btn-lg  glyphicon glyphicon-edit" href="{{ route('category.edit',$cat->id)}}"></a>
+                          <button class="btn  btn-lg glyphicon glyphicon-trash" onclick=" confirm('Are you sure?')" type="submit"></button>
                         </form>
                     </td>
                 </tr> 

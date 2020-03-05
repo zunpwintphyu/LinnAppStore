@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 2',
+    'title' => 'Linn App Store',
 
     'title_prefix' => '',
 
@@ -32,7 +32,7 @@ return [
 
     'logo' => 'Linn App Store',
 
-    'logo_mini' => '<b>A</b>LT',
+    // 'logo_mini' => 'Linn App Store',
 
     /*
     |--------------------------------------------------------------------------
@@ -146,7 +146,7 @@ return [
         [
             'text' => 'Category',
             'url'  => 'category',
-            'icon' => 'fab fa-google-play',
+            'icon' => 'fa fa-sitemap',
         ],
         [
             'text' => 'Add New App',

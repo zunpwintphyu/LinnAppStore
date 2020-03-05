@@ -44,7 +44,7 @@
 </div>
 @endif
 <div class="justify-content-center">
-    <form action="{{ route('application.store')}}" method="post">
+    <form action="{{ route('application.store')}}" method="post" enctype="multipart/form-data">
 
         @csrf
         <div class="row">

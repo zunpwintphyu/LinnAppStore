@@ -131,6 +131,7 @@
                             @method('DELETE') -->
                             <a href="{{route('application.edit',$application->id)}}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit" title="Edit"></i></a>
+                                 <a href="{{route('application.download',$application->id)}}" class="btn btn-sm btn-success"><i class="fas fa-download"></i> </a>
                             <button class="btn btn-sm btn-danger btn-sm deleteRecord" data-id="{{$application->id }}">
                                 <i class="fa fa-fw fa-trash" title="Delete"></i></button>
                         <!-- </form> -->

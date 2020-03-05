@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => 'Linn App Store',
 
     'logo_mini' => '<b>A</b>LT',
 

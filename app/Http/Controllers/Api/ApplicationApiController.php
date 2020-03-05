@@ -83,7 +83,7 @@ class ApplicationApiController extends BaseController
         $headers = ['Content-Type: application/*'];
         $newName = $app->name.'.apk';
 
-        download($myFile, $newName, $headers);
+        response()->download($myFile, $newName, $headers);
 
         return response()->json(['message'=>"Download Successufl."], 200);
     }

@@ -1,6 +1,37 @@
 @extends('adminlte::page')
 @section('title', 'Application')
+<style>
+.has-error {
+    color: #d32535;
+}
 
+.has-error input {
+    border-color: #d32535;
+}
+
+.progress {
+    position: relative;
+    width: 100%;
+    /* border: 1px solid #7F98B2; */
+    padding: 1px;
+    border-radius: 3px;
+}
+
+.bar {
+    background-color: #B4F5B4;
+    width: 0%;
+    height: 25px;
+    border-radius: 3px;
+}
+
+.percent {
+    position: absolute;
+    display: inline-block;
+    top: 3px;
+    left: 48%;
+    color: #7F98B2;
+}
+</style>
 @section('content_header')
 <h1 style="color:#222299;">Application</h1>
 @stop
@@ -19,19 +50,25 @@
         <div class="row">
             <div class="col-md-4">
                 <label class="col-sm-4 control-label">Category</span></label>
-                <select name="category_id" class="form-control" id="category_id">
-                    <option>Select Category</option>
-                    @foreach($categories as $category)
-                    <option value="{{$category->id}}">
-                        {{$category->category_name}}
-                    </option>
-                    @endforeach
-                </select>
+                <div class="form-group column {{ $errors->has('category_id')?'has-error':''}}">
+                    <select name="category_id" class="form-control" id="category_id">
+                        <optio value="">Select Category</option>
+                            @foreach($categories as $category)
+                            <option value="{{$category->id}}">
+                                {{$category->category_name}}
+                            </option>
+                            @endforeach
+                    </select>
+                    {!! $errors->first('category_id','<small>:message</small>')!!}
+                </div>
             </div>
             <div class="col-md-4">
                 <label class="col-sm-4 control-label">App Name</span></label>
-                <input type="text" name="name" class="form-control" id="name" style="color:blue;font-size:15px;"
-                    placeholder="Name">
+                <div class="form-group column {{ $errors->has('name')?'has-error':''}}">
+                    <input type="text" name="name" class="form-control" id="name" style="color:blue;font-size:15px;"
+                        placeholder="Name">
+                    {!! $errors->first('name','<small>:message</small>')!!}
+                </div>
             </div>
 
         </div>
@@ -39,11 +76,17 @@
         <div class="row">
             <div class="col-md-4">
                 <label class="col-sm-4 control-label">File Upload</span></label>
-                <input type="file" name="file" class="form-control" id="cat_name" style="color:blue;font-size:15px;">
+                <div class="form-group column {{ $errors->has('file')?'has-error':''}}">
+                    <input type="file" name="file" class="form-control" id="file" style="color:blue;font-size:15px;">
+                    {!! $errors->first('file','<small>:message</small>')!!}
+                </div>
             </div>
             <div class="col-md-4">
                 <label class="col-sm-4 control-label">Logo Upload</span></label>
-                <input type="file" name="logo" class="form-control" id="cat_name" style="color:blue;font-size:15px;">
+                <div class="form-group column {{ $errors->has('logo')?'has-error':''}}">
+                    <input type="file" name="logo" class="form-control" id="logo" style="color:blue;font-size:15px;">
+                    {!! $errors->first('logo','<small>:message</small>')!!}
+                </div>
             </div>
             <br>
             <div class="col-md-1">
@@ -51,11 +94,21 @@
                         class="glyphicon glyphicon-plus"></span>ADD</button>
             </div>
         </div>
+       <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow=""
+                aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                        0%
+            </div>
+        </div>
+        <br />
+        <div id="success">
+
+        </div>
     </form>
     <br>
     <!-- <hr> -->
 
-    <div class="col-md-4">
+    <div class="card-body table-responsive p-0">
         <table class="table table-hover">
             <thead>
                 <th>
@@ -78,12 +131,14 @@
                         {{$application->viewcategory->category_name}}
                     </td>
                     <td>
-                        <form action="{{ route('application.destroy', $application->id)}}" method="post">
+                        <form action="{{ route('application.destroy', $application->id)}}" method="post"
+                            onsubmit="return confirm('Do you want to delete?');">
                             @csrf
                             @method('DELETE')
-                            <a class="btn btn-primary-sm  glyphicon glyphicon-edit"></a>
-                            <button class="btn btn-primary-sm glyphicon glyphicon-trash"
-                                onclick=" confirm('Are you sure you want to delete?')" type="submit"></button>
+                            <a href="{{route('application.edit',$application->id)}}" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit" title="Edit"></i></a>
+                            <button class="btn btn-sm btn-danger btn-sm">
+                                <i class="fa fa-fw fa-trash" title="Delete"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -92,7 +147,7 @@
 
             </tbody>
         </table>
-
+        {{ $applications->links() }}
     </div>
 </div>
 @stop
@@ -102,6 +157,8 @@
 
 
 @section('js')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
 <script>
 $(document).ready(function() {
 
@@ -109,6 +166,40 @@ $(document).ready(function() {
         $(".alert-success").fadeOut(3000);
     }, 3000);
 
+    // function validate(formData, jqForm, options) {
+    //     var form = jqForm[0];
+    //     if (!form.file.value) {
+    //         alert('File not found');
+    //         return false;
+    //     }
+    // }
+
+    // $('form').ajaxForm({
+    //   beforeSend:function(){
+    //     $('#success').empty();
+    //   },
+    //   uploadProgress:function(event, position, total, percentComplete)
+    //   {
+    //     $('.progress-bar').text(percentComplete + '%');
+    //     $('.progress-bar').css('width', percentComplete + '%');
+    //   },
+    //   success:function(data)
+    //   {
+    //     if(data.errors)
+    //     {
+    //       $('.progress-bar').text('0%');
+    //       $('.progress-bar').css('width', '0%');
+    //       $('#success').html('<span class="text-danger"><b>'+data.errors+'</b></span>');
+    //     }
+    //     if(data.success)
+    //     {
+    //       $('.progress-bar').text('Uploaded');
+    //       $('.progress-bar').css('width', '100%');
+    //       $('#success').html('<span class="text-success"><b>'+data.success+'</b></span><br /><br />');
+    //       $('#success').append(data.image);
+    //     }
+    //   }
+    // });
 });
 </script>
 @stop

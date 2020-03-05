@@ -73,4 +73,18 @@ class ApplicationApiController extends BaseController
     {
         //
     }
+
+    public function downloadFile($id)
+    {
+
+        $app = Application::findOrFail($id);
+            
+        $myFile = public_path()."/uploads/application/".$app->file;
+        $headers = ['Content-Type: application/*'];
+        $newName = $app->name.'.apk';
+
+        response()->download($myFile, $newName, $headers);
+
+        return response()->json(['message'=>"Download Successufl."], 200);
+    }
 }

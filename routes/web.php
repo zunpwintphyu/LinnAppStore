@@ -27,3 +27,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::put('/category/update/{id}', 'CategoryController@update')->name('category.update');
     Route::delete('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
 });
+
+
+Route::get('application/download/{id}', 'ApplicationController@downloadFile')->name('application.download');

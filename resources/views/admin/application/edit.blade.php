@@ -71,9 +71,9 @@
                 </div>
             </div>
             <br>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <button class="btn btn-success btn-sm form-control" type="submit"><span
-                        class="glyphicon glyphicon-plus"></span>ADD</button>
+                        class="glyphicon glyphicon-plus"></span>UPDATE</button>
             </div>
         </div>
         <div class="row">

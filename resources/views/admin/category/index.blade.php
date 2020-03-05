@@ -12,6 +12,9 @@
   <p>{{ $message }}</p>
 </div>
 @endif
+<?php 
+      $category_name= isset($_GET['category_name'])?$_GET['category_name']:'';
+?>
 <div class="justify-content-center">
     <form  action="{{ route('category.store')}}" method="post" enctype="multipart/form-data">
     @csrf
@@ -33,7 +36,22 @@
     </form>
     <br>
     <hr>
-    <div class="col-md-4">
+    <div>
+    <div>
+        <div class="col-md-12">
+        {{-- <form action="{{ url('category') }}" method="GET"> --}}
+            {{-- <div class="col-md-4">
+                <input type="text" name="category_name"  placeholder="Serach By Category Name" value="{{ $category_name}}">
+            </div> --}}
+        {{-- </form> --}}
+        <div class="search-container">
+            <form action="{{ url('category') }}" method="GET">
+              <input type="text" placeholder="Search.." name="category_name" value="{{ $category_name}}">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div><br>
+        </div>
+        <div class="col-md-4">
         <table class="table table-hover">
             <thead>
                 <th>Category Name</th>
@@ -62,9 +80,11 @@
                 
             </tbody>
         </table>
+       
         <div class="row">
             {!! $categories->render() !!}
         </div>
+    </div>
     </div>
 </div>
 @stop

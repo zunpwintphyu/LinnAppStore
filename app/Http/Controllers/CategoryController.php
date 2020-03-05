@@ -16,8 +16,14 @@ class CategoryController extends Controller
     {
         // $categories = Category::all();
         // return view('admin.category.index',compact('categories'));
+       
+        $categories =new Category();
 
-        $categories = Category::orderBy('id','DESC')->paginate(5);
+        $search_key = $request->category_name;
+        if($search_key!=''){
+            $categories = $categories->where('category_name','like','%'.$search_key.'%');
+        }
+        $categories = $categories->orderBy('id','DESC')->paginate(5);
         return view('admin.category.index',compact('categories'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }

@@ -13,13 +13,18 @@
 </div>
 @endif
 <div class="justify-content-center">
-    <form  action="{{ route('category.store')}}" method="post">
+    <form  action="{{ route('category.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-md-4" >
             <input type="text" name="category_name" class="form-control" id="cat_name" style="color:blue;font-size:18px;" placeholder="Category Name">
             
             <span style="color:red">{!! $errors->first('category_name','<small>:message</small>')!!} </span>
+        </div>
+        <div class="col-md-3">
+            <input type="file" name="logo" id="logo" class="form-control">
+            
+            <span style="color:red">{!! $errors->first('logo','<small>:message</small>')!!} </span>
         </div>
         <div class="col-md-1">
             <button class="btn btn-success btn-sm form-control" type="submit"><span class="glyphicon glyphicon-plus"></span>ADD</button> 
@@ -32,12 +37,18 @@
         <table class="table table-hover">
             <thead>
                 <th>Category Name</th>
-                <th>Action</th>
+                <th><center>Logo</center></th>
+                <th><center>Action</center></th>
             </thead>
             <tbody>
                 @foreach ($categories as $cat )
                 <tr>
-                    <td><h4>{{ $cat->category_name }}</h4></td>
+                    <td>{{ $cat->category_name }}</td>
+                    <td>
+                    <center>
+                        <img src="{{ asset('uploads/category/'.$cat->logo) }}" alt="image"  style="width:20%;alignItem:center">
+                    </center>
+                    </td>
                     <td>
                         <form action="{{ route('category.destroy',$cat->id)}}" method="post">
                           @csrf

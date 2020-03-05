@@ -21,6 +21,11 @@
         <input type="text" value="{{ $category->category_name}}" name="category_name" class="form-control" id="cat_name" style="color:blue;font-size:18px;" placeholder="Category Name">
             {!! $errors->first('category_name','<small>:message</small>')!!}
         </div>
+        <div class="col-md-3">
+            <input type="file" name="logo" id="logo" class="form-control" value="{{ $category->logo}}">
+            
+            <span style="color:red">{!! $errors->first('logo','<small>:message</small>')!!} </span>
+        </div>
         <div class="col-md-1">
             <button class="btn btn-success btn-sm form-control" type="submit"><span class="glyphicon glyphicon-plus"></span>ADD</button> 
         </div>

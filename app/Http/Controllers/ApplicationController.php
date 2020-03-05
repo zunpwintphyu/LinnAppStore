@@ -6,6 +6,7 @@ use App\Application;
 use App\Category;
 use Illuminate\Http\Request;
 use Validator;
+
 class ApplicationController extends Controller
 {
     /**
@@ -198,5 +199,19 @@ class ApplicationController extends Controller
         // ]);
 
 
+    }
+
+
+    public function downloadFile()
+    {
+        
+        $app = Application::findOrFail($id);
+            
+        $myFile = public_path()."/uploads/application/".$app->file;
+        $headers = ['Content-Type: application/*'];
+        $newName = $app->name.'.apk';
+
+
+        return response()->download($myFile, $newName, $headers);
     }
 }

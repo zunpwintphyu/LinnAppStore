@@ -24,19 +24,11 @@
 
 @section('content')
   <div class="content">
-      {{dd($applications)}}
+     
     @foreach($applications as $data)
             <img src="{{ asset('/uploads/application/'.$data->logo)}}" alt="Icon" 
-            style="width:80px; height:80px;">
-           
-
-            {{-- <img src="{{ asset('/uploads/application/'.$category->logo)}}" alt="employee_photo" 
-            style="width:80px; height:80px;">
-            <img src="{{ asset('/uploads/application/icon.webp')}}" alt="employee_photo" 
-            style="width:80px; height:80px;"> --}}
+            style="width:50px; height:50px; margin-bottom: 20px;"> &nbsp &nbsp &nbsp
     @endforeach
-      <br>
-   
   </div>
 @stop
 

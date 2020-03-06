@@ -46,29 +46,29 @@
                                     </div>
 
                                     <div class="block-content block-content-hover block-content-no-pad row mb-4">
-
+                                        @foreach($applications as $app)
                                         <div class="col-md-4 col-sm-4 col-xs-4">
-                                            <a class="block block-rounded block-link-shadow" href="http://103.83.190.196/appstore/public/facebook">
                                                 <div class="block-content block-content-full d-flex  justify-content-between" style="background-color: #e4ede9">
                                                     <div class="item  block-app-image" style="width: 50%">
-                                                        <img src="http://103.83.190.196/appstore/public/storage/apk-uploads/comlinnitsolutionfbapp/appimage/facebook-app-image-1Q8g7.png" width="100%" height="100%">
+                                                        <img src="{{ asset('uploads/application/',$app->logo) }}" width="100%" height="100%">
                                                     </div>
-                                                    <div class="ml-3" style="float: left; width: 50%">
+                                                    <div class="ml-3" style="width: 50%">
                                                         <p class="font-w600 mb-0 app-title">
-                                                            Facebook
+                                                            {{ $app->name}}
                                                         </p>
-                                                        <button type="button" class="block-app-download btn btn-outline-success btn-sm" style="display: block; margin-top: 5px;">
-                                                            <i class="fa fa-fw fa-download mr-1"></i> Download
-                                                        </button>
-
+                                                    </div>
+                                                    <div class="ml-3">
+                                                        <a href="{{route('application.download',$app->id)}}">
+                                                            <button type="button" class="block-app-download btn btn-outline-success btn-sm" style="display: block;">
+                                                                Download
+                                                            </button>
+                                                        </a>
                                                     </div>
                                                 </div>
-                                            </a>
                                         </div>
+                                        @endforeach
 
-                                        <div class="mb-4 mt-4 col-md-12" style="margin:auto 0; position:relative;">
-
-                                        </div>
+                                      
                                     </div>
                                 </div>
                             </div>

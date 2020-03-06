@@ -363,7 +363,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #ffffff">
 
     <div id="page-container" class="page-header-dark main-content-boxed">
         <div class="block-content block-content-full bg-gd-lake-op text-center">

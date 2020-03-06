@@ -24,7 +24,6 @@
 
 @section('content')
   <div class="content">
-      {{dd($applications)}}
     @foreach($applications as $data)
             <img src="{{ asset('/uploads/application/'.$data->logo)}}" alt="Icon" 
             style="width:80px; height:80px;">

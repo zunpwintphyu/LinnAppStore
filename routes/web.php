@@ -18,16 +18,12 @@ Route::get('/application/{id}','HomeController@applicationByCat')->name('applica
 Auth::routes();
 
 Route::get('/home', function(){
-    return redirect()->route('dashboard');
+    return redirect()->route('admin.dashboard');
 })->name('home');
 
 //Application Route
-Route::group(['middleware' => ['auth']], function() {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
+    Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::resource('/application','ApplicationController');
     Route::get('/category', 'CategoryController@index')->name('category.index');
     Route::post('/category/store', 'CategoryController@store')->name('category.store');

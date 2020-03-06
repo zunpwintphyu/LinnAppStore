@@ -35,7 +35,7 @@ class HomeController extends Controller
     }
 
     public function applicationByCat($id){
-        $applications = Application::where('category_id',$id)->get();
+        $applications = Application::with('viewcategory')->where('category_id',$id)->get();
         return view('application',compact('applications'));
     }
 }

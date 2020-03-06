@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::resource('/application','ApplicationController');
     Route::get('/category', 'CategoryController@index')->name('category.index');
     Route::post('/category/store', 'CategoryController@store')->name('category.store');

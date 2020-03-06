@@ -44,7 +44,7 @@ $category_name= isset($_GET['category_name'])?$_GET['category_name']:'';
             </div>
             <br>
         </div>
-        <div class="card-body table-responsive p-0">
+        <div class="col-md-10">
             <table class="table table-hover">
                 <thead>
                     <th>Category Name</th>

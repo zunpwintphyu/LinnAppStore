@@ -21,7 +21,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #ffffff">
 
     <div id="page-container" class="page-header-dark main-content-boxed">
 
@@ -38,17 +38,18 @@
                     <div class="col-lg-12 col-xl-12">
 
                         <div class="row">
-
                             <div class="col-lg-12 col-xl-12">
                                 <div class="block block-themed" itemscope itemtype="http://schema.org/MobileApplication">
                                     <div class="block-header bg-light">
-                                        <h3 class="block-title"><a href="{{ url('/')}}">Home</a>  » {{ $applications[0]->viewcategory->category_name }}</h3>
+                                        <h3 class="block-title"><a href="{{ url('/')}}">Home</a>  @if($applications->count()>0) » {{ $applications[0]->viewcategory->category_name }} @endif</h3>
                                     </div>
                                     <?php
                                         $keyword = isset($_GET['keyword'])?$_GET['keyword']:'';
 
                                      ?>
-                                    
+
+
+                                    @if($applications->count()>0)
                                     <form action="{{ route('application',$applications[0]->viewcategory->id)}}" method="get">
                                         <div class="col-md-4 col-sm-4 col-xs-4">
                                             <div class="block-content block-content-full d-flex  justify-content-between">
@@ -56,30 +57,41 @@
                                             </div>
                                         </div>
                                     </form>
+                                    @endif
 
                                     <div class="block-content block-content-hover block-content-no-pad row mb-4">
-                                        @foreach($applications as $app)
-                                        <div class="col-md-4 col-sm-4 col-xs-4" style="padding-bottom: 10px">
-                                                <div class="block-content block-content-full d-flex  justify-content-between"  style="border: 0.5px solid #ecf0f5; border-radius: 5px;">
-                                                    <div class="item  block-app-image" style="width: 50%">
-                                                        <img src="{{ asset('uploads/application/'.$app->logo) }}" width="100%" height="100%">
+                                        @if($applications->count()>0)
+                                            @foreach($applications as $app)
+                                            <div class="col-md-4 col-sm-4 col-xs-4" style="padding-bottom: 10px">
+                                                    <div class="block-content block-content-full d-flex  justify-content-between"  style="border: 0.5px solid #ecf0f5; border-radius: 5px;">
+                                                        <div class="item  block-app-image" style="width: 50%">
+                                                            <img src="{{ asset('uploads/application/'.$app->logo) }}" width="100%" height="100%">
+                                                        </div>
+                                                        <div class="ml-3" style="width: 50%">
+                                                            <p class="font-w600 mb-0 app-title" style="color: #365AF0;">
+                                                                {{ $app->name}}
+                                                            </p>
+                                                        </div>
+                                                        <div class="ml-3">
+                                                            <a href="{{route('application.download',$app->id)}}">
+                                                                <!-- <button type="button" class="block-app-download btn btn-outline-success btn-sm" style="display: block;">
+                                                                    Download
+                                                                </button> -->
+                                                                <img src="{{asset('img/download.png')}}" alt="download">
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <div class="ml-3" style="width: 50%">
-                                                        <p class="font-w600 mb-0 app-title" style="color: #365AF0;">
-                                                            {{ $app->name}}
-                                                        </p>
-                                                    </div>
-                                                    <div class="ml-3">
-                                                        <a href="{{route('application.download',$app->id)}}">
-                                                            <!-- <button type="button" class="block-app-download btn btn-outline-success btn-sm" style="display: block;">
-                                                                Download
-                                                            </button> -->
-                                                            <img src="{{asset('img/download.png')}}" alt="download">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                        @endforeach
+                                            </div>
+                                            @endforeach
+                                        @else
+                                            <div class="col-md-12 col-sm-12 col-xs-12" style="padding-bottom: 10px">  
+                                                <p class="font-w600 mb-0 app-title" style="color: #365AF0;">
+                                                    No Application found.
+                                                </p>
+                                                      
+                                            </div>
+
+                                        @endif
 
                                         <div class="mb-4 mt-4 col-md-12" style="margin:auto 0; position:relative;">
 

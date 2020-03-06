@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>Linn App Store Apk Download</title>
+    <title>Linn App Store</title>
 
     <link rel="icon" href="http://appstore.test/img/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="http://appstore.test/img/favicon.png" type="image/x-icon" />
@@ -363,7 +363,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #ffffff">
 
     <div id="page-container" class="page-header-dark main-content-boxed">
         <div class="block-content block-content-full bg-gd-lake-op text-center">
@@ -393,7 +393,7 @@
                                                     @foreach($categories as $cat)
 
                                                     <div class="col-6">
-                                                        <a class="block block-transparent block-link-pop text-center mb-0" href="{{ route('application',$cat->id)}}">
+                                                        <a class="block block-transparent block-link-pop text-center mb-0" href="{{ route('application',$cat->id)}}" style="text-decoration: none;">
                                                             <div class="block-content block-content-full aspect-ratio-16-9 d-flex justify-content-center align-items-center" style="margin-bottom: 10px; border: 1px solid #ecf0f5; border-radius: 10px;">
                                                                 <div>
                                                                     <!-- <i class="fab fa-google-play text-primary mr-1"></i> -->

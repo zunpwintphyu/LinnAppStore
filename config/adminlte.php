@@ -145,12 +145,12 @@ return [
         ],
         [
             'text' => 'Category',
-            'url'  => 'category',
+            'url'  => 'admin/category',
             'icon' => 'fa fa-sitemap',
         ],
         [
             'text' => 'Add New App',
-            'url'  => 'application',
+            'url'  => 'admin/application',
             'icon' => 'fas fa-folder-plus',
         ],
         // [

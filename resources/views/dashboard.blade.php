@@ -9,7 +9,7 @@
 @section('content_header')
 <div class="row">
     <div>
-    <h3>Linn App Store</h3>
+        <h3>Linn App Store</h3>
     </div>
     <div class="col-lg-12 margin-tb">
         <div class="pull-right">
@@ -23,27 +23,24 @@
 
 
 @section('content')
-  <div class="content">
-    @foreach($applications as $data)
-            <img src="{{ asset('/uploads/application/'.$data->logo)}}" alt="Icon" 
-            style="width:80px; height:80px;">
-           
+<div class="content">
 
-            {{-- <img src="{{ asset('/uploads/application/'.$category->logo)}}" alt="employee_photo" 
-            style="width:80px; height:80px;">
-            <img src="{{ asset('/uploads/application/icon.webp')}}" alt="employee_photo" 
-            style="width:80px; height:80px;"> --}}
+    @foreach($applications as $data)
+    <div class="rows">
+        <div class="col-md-1">
+            <img src="{{ asset('/uploads/application/'.$data->logo)}}" alt="Icon"
+                style="width:50px; height:50px; margin-bottom: 20px;">
+        </div>
+    </div>
     @endforeach
-      <br>
-   
-  </div>
+</div>
 @stop
 
 
 
 @section('css')
 
-    
+
 
 @stop
 
@@ -51,6 +48,6 @@
 
 @section('js')
 
-   
+
 
 @stop

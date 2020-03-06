@@ -13,7 +13,7 @@
 </div>
 @endif
 <div class="justify-content-center">
-    <form  action="{{ route('category.update',$category->id)}}" method="post">
+    <form  action="{{ route('category.update',$category->id)}}" method="post" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="row">

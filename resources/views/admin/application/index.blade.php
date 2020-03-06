@@ -106,6 +106,9 @@
         <table class="table table-hover">
             <thead>
                 <th>
+                    App Logo
+                </th>
+                <th>
                     Application Name
                 </th>
                 <th>
@@ -118,6 +121,10 @@
             <tbody>
                 @foreach($applications as $application)
                 <tr>
+                    <td>
+                        <img src="{{ asset('uploads/application/'.$application->logo) }}" height="50px" width="50px"
+                        id="shop_image_preview"> <span class="remove_preview" id="shop_remove_preview"></span>
+                    </td>
                     <td>
                         {{$application->name}}
                     </td>
@@ -164,7 +171,7 @@ $(document).ready(function() {
 
     function validate(formData, jqForm, options) {
         var form = jqForm[0];
-        
+
          if (!form.name.value) {
             alert("Please Enter App Name");
             return false;

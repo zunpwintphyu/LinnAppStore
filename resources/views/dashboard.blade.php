@@ -39,10 +39,9 @@
                 </div>
             </div>
         </form>
-        {!! $applications->appends(request()->input())->links() !!}
+        
     </div>
 </div>
-
 @stop 
 
 
@@ -58,9 +57,10 @@
         </div>
     </div>
     @endforeach
+    {!! $applications->appends(request()->input())->links() !!}
+
 </div>
 @stop
-
 
 
 @section('css')

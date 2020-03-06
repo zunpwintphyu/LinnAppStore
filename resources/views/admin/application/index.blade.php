@@ -110,7 +110,7 @@
                 </div>
                 <div class="col-md-3 form-group">
                     <select class="form-control" name="category_id" style="border-radius: 5px;">
-                          <option value="">Select by class...</option>
+                          <option value="">Select by application name...</option>
                               @foreach($categories as $category)
                                   <option value="{{$category->id}}" {{ ($category_id==  $category->id)?'selected':'' }}>
                                         {{$category->category_name}}

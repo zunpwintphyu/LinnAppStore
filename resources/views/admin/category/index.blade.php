@@ -37,7 +37,7 @@ $category_name= isset($_GET['category_name'])?$_GET['category_name']:'';
     <div>
         <div class="col-md-12">
             <div class="search-container">
-                <form action="{{ url('category') }}" method="GET">
+                <form action="{{ url('admin/category') }}" method="GET">
                     <input type="text" placeholder="Search.." name="category_name" value="{{ $category_name}}">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>

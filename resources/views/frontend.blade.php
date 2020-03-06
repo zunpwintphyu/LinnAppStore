@@ -392,7 +392,7 @@
                                                 <div class="row">
                                                     @foreach($categories as $cat)
 
-                                                    <div class="col-6">
+                                                    <div class="col-6" style="background-color: #ffffff">
                                                         <a class="block block-transparent block-link-pop text-center mb-0" href="{{ route('application',$cat->id)}}" style="text-decoration: none;">
                                                             <div class="block-content block-content-full aspect-ratio-16-9 d-flex justify-content-center align-items-center" style="margin-bottom: 10px; border: 1px solid #ecf0f5; border-radius: 10px;">
                                                                 <div>

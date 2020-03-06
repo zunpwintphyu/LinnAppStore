@@ -113,34 +113,18 @@ class CategoryController extends Controller
             'logo' => 'required'
         ]);
 
-
-
-        // $input = $request->all();
-
-
-        // $category = Category::find($id);
-
-        // $logo = $category->logo;
-
-        // if ($file = $request->file('logo')) {
-        //     $extension = $file->getClientOriginalExtension();
-        //     $destinationPath = public_path() . '/uploads/logo/';
-        //     // $safeName = str_random(10) . '.' . $extension;
-        //     $safeName = $request->name . '.' . $extension;
-        //     $file->move($destinationPath, $safeName);
-        //     $image = $safeName;
-        // }
-
-        // $input['logo'] = $logo;
-
-        // $category->update($input);
-
-        // return redirect()->route('category.index')
-        //                 ->with('success','Category updated successfully');
-
-
         $input = $request->all();
         $category = Category::find($id);
+
+        $logo = $category->logo;
+        if ($file = $request->file('logo')) {
+            $extension = $file->getClientOriginalExtension();
+            $destinationPath = public_path() . '/uploads/category/';
+            $fileName = $file->getClientOriginalName();
+            $file->move($destinationPath, $fileName);
+            $logo = $fileName;
+        }
+
         $category->update($input);
 
         return redirect()->route('category.index')

@@ -16,11 +16,23 @@
     <div class="col-md-12"> 
         <?php 
             $keyword = (isset($_GET['keyword']))?$_GET['keyword']:'';
+            $category_id = (isset($_GET['category_id']))?$_GET['category_id']:'';
         ?>  
         <form method="GET" action="{{route('dashboard')}}">
             <div class="row">
                 <div class="col-md-3 form-group">
                     <input type="text" name="keyword" class="form-control float-right" placeholder="Search by application name..." value="{{$keyword}}" style="border-radius: 5px;margin-left: 25px;">
+                </div>
+                <div class="col-md-3 form-group">
+
+                    <select class="form-control" name="category_id" style="border-radius: 5px;">
+                          <option value="">Select by application name...</option>
+                              @foreach($categories as $category)
+                                  <option value="{{$category->id}}" {{ ($category_id==  $category->id)?'selected':'' }}>
+                                        {{$category->category_name}}
+                                  </option>
+                              @endforeach
+                        </select>
                 </div>
                 <div class="col-md-1 form-group">
                     <input type="submit" class="btn btn-primary" value="Search">

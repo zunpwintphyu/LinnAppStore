@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Application;
+use App\Category;
 
 class DashboardController extends Controller
 {
@@ -16,15 +17,19 @@ class DashboardController extends Controller
     {
         // dd($request->keyword);
         $applications =new Application();
-
+        $categories =  Category::all();
         $keyword = $request->keyword;
         if($keyword!=''){
             $applications = $applications->where('name','like','%'.$keyword.'%');
         }
 
+        $category_id = $request->category_id;
+        if ($category_id!='') {
+            $applications = $applications->where('category_id',$category_id);
+        }
         $applications = $applications->get();
         // $applications = Application::orderBy('id', 'DESC')->paginate(60);
-        return view('dashboard',compact('applications'));
+        return view('dashboard',compact('applications','categories'));
     }
 
     /**

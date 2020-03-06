@@ -51,11 +51,17 @@
 
                                     @if($applications->count()>0)
                                     <form action="{{ route('application',$applications[0]->viewcategory->id)}}" method="get">
-                                        <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <div class="block-content block-content-full d-flex  justify-content-between">
-                                                <input type="text" name="keyword" value="{{ $keyword }}" class="form-control" placeholder="Search.."> 
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <div class="block-content block-content-full d-flex  justify-content-between">
+                                                    <input type="text" name="keyword" value="{{ $keyword }}" class="form-control" placeholder="Search.."> 
+                                                    <button type="button" class="btn" style="display: block; color: #242032; border-color:#d8e5df; margin-left: 5px; ">
+                                                            <img src="{{asset('img/search.png')}}" style="width: 15px; margin-left: 10px;">
+                                                        </button>
+                                                </div>
                                             </div>
                                         </div>
+                                        
                                     </form>
                                     @endif
 

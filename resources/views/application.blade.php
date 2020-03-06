@@ -60,21 +60,21 @@
                                     <div class="block-content block-content-hover block-content-no-pad row mb-4">
                                         @foreach($applications as $app)
                                         <div class="col-md-4 col-sm-4 col-xs-4" style="padding-bottom: 10px">
-                                                <div class="block-content block-content-full d-flex  justify-content-between" >
+                                                <div class="block-content block-content-full d-flex  justify-content-between"  style="border: 0.5px solid #ecf0f5; border-radius: 5px;">
                                                     <div class="item  block-app-image" style="width: 50%">
                                                         <img src="{{ asset('uploads/application/'.$app->logo) }}" width="100%" height="100%">
                                                     </div>
                                                     <div class="ml-3" style="width: 50%">
-                                                        <p class="font-w600 mb-0 app-title">
+                                                        <p class="font-w600 mb-0 app-title" style="color: #365AF0;">
                                                             {{ $app->name}}
                                                         </p>
                                                     </div>
                                                     <div class="ml-3">
                                                         <a href="{{route('application.download',$app->id)}}">
-                                                            <button type="button" class="block-app-download btn btn-outline-success btn-sm" style="display: block;">
+                                                            <!-- <button type="button" class="block-app-download btn btn-outline-success btn-sm" style="display: block;">
                                                                 Download
-                                                            </button>
-                                                            <!-- <img src="{{asset('img/download.png')}}" alt="download"> -->
+                                                            </button> -->
+                                                            <img src="{{asset('img/download.png')}}" alt="download">
                                                         </a>
                                                     </div>
                                                 </div>

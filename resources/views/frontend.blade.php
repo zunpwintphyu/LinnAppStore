@@ -382,7 +382,7 @@
                             <div class="block block-rounded" style="width: 100% !important;">
                                 <div class="block-content block-content-full">
 
-                                    <div class="block block-rounded block-bordered">
+                                    <div class="">
 
                                         <div class="block-content tab-content">
 
@@ -394,10 +394,10 @@
 
                                                     <div class="col-6">
                                                         <a class="block block-transparent block-link-pop text-center mb-0" href="{{ route('application',$cat->id)}}">
-                                                            <div class="block-content block-content-full aspect-ratio-16-9 d-flex justify-content-center align-items-center" style="background-color: #e4ede9; margin-bottom: 10px;">
+                                                            <div class="block-content block-content-full aspect-ratio-16-9 d-flex justify-content-center align-items-center" style="margin-bottom: 10px; border: 1px solid #ecf0f5; border-radius: 10px;">
                                                                 <div>
                                                                     <!-- <i class="fab fa-google-play text-primary mr-1"></i> -->
-                                                                    <div class="font-w600 mt-2 text-uppercase"> <strong>{{ $cat->category_name}} </strong></div>
+                                                                    <div class="font-w600 mt-2 text-uppercase"> <strong style="color: #365AF0;">{{ $cat->category_name}} </strong></div>
                                                                 </div>
                                                             </div>
                                                         </a>

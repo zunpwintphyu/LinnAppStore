@@ -113,10 +113,10 @@ class CategoryController extends Controller
             'logo' => 'required'
         ]);
 
-        $input = $request->all();
         $category = Category::find($id);
 
         $logo = $category->logo;
+
         if ($file = $request->file('logo')) {
             $extension = $file->getClientOriginalExtension();
             $destinationPath = public_path() . '/uploads/category/';
@@ -125,7 +125,12 @@ class CategoryController extends Controller
             $logo = $fileName;
         }
 
-        $category->update($input);
+         $arr = [
+              'logo' => $logo,
+              'category_name'=>$request->category_name
+          ];
+
+        $category->update($arr);
 
         return redirect()->route('category.index')
                         ->with('success','Category updated successfully');

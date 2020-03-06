@@ -50,7 +50,7 @@
                                         <div class="col-md-4 col-sm-4 col-xs-4">
                                                 <div class="block-content block-content-full d-flex  justify-content-between" style="background-color: #e4ede9">
                                                     <div class="item  block-app-image" style="width: 50%">
-                                                        <img src="{{ asset('uploads/application/',$app->logo) }}" width="100%" height="100%">
+                                                        <img src="{{ asset('uploads/application/'.$app->logo) }}" width="100%" height="100%">
                                                     </div>
                                                     <div class="ml-3" style="width: 50%">
                                                         <p class="font-w600 mb-0 app-title">

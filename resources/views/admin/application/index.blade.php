@@ -75,14 +75,14 @@
         <br>
         <div class="row">
             <div class="col-md-4">
-                <label class="col-sm-4 control-label">File Upload</label>
+                <label class="control-label">File Upload</label>
                 <div class="form-group column {{ $errors->has('file')?'has-error':''}}">
                     <input type="file" name="file" class="form-control" id="file" style="color:blue;font-size:15px;">
                     {!! $errors->first('file','<small>:message</small>')!!}
                 </div>
             </div>
             <div class="col-md-4">
-                <label class="col-sm-4 control-label">Logo Upload</label>
+                <label class="control-label">Logo Upload</label>
                 <div class="form-group column {{ $errors->has('logo')?'has-error':''}}">
                     <input type="file" name="logo" class="form-control" id="logo" style="color:blue;font-size:15px;">
                     {!! $errors->first('logo','<small>:message</small>')!!}
@@ -90,9 +90,11 @@
             </div>
             <br>
             <div class="col-md-1">
+                <label for=""></label>
                 <button class="btn btn-success btn-sm form-control" type="submit" onclick="hideProgress()">
                     <span class="glyphicon glyphicon-plus"></span>ADD</button>
             </div>
+            <div class="col-md-3"></div>
         </div> 
        <div id="progress">
             <div class="bar"></div >
@@ -139,7 +141,7 @@
                             <a href="{{route('application.edit',$application->id)}}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit" title="Edit"></i></a>
                                  <a href="{{route('application.download',$application->id)}}" class="btn btn-sm btn-success"><i class="fas fa-download"></i> </a>
-                            <button class="btn btn-sm btn-danger btn-sm deleteRecord" data-id="{{$application->id }}">
+                                <button class="btn btn-sm btn-danger btn-sm deleteRecord" data-id="{{$application->id }}">
                                 <i class="fa fa-fw fa-trash" title="Delete"></i></button>
                         <!-- </form> -->
                     </td>

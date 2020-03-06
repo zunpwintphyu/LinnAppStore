@@ -155,10 +155,6 @@
                         {{$application->viewcategory->category_name}}
                     </td>
                     <td>
-                      <!--   <form action="{{ route('application.destroy', $application->id)}}" method="post"
-                            onsubmit="return confirm('Do you want to delete?');">
-                            @csrf
-                            @method('DELETE') -->
                             <a href="{{route('application.edit',$application->id)}}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit" title="Edit"></i></a>
                                  <a href="{{route('application.download',$application->id)}}" class="btn btn-sm btn-success"><i class="fas fa-download"></i> </a>
@@ -176,7 +172,7 @@
         <div class="col-md-6">
         Total: {{$count}}
         </div>
-        {{$applications->links()}}
+        {!! $applications->appends(request()->input())->links() !!}
         
     </div>
     <input type="hidden" id="token" value="{{ csrf_token() }}">

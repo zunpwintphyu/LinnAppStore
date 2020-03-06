@@ -27,9 +27,9 @@ class DashboardController extends Controller
         if ($category_id!='') {
             $applications = $applications->where('category_id',$category_id);
         }
-        $applications = $applications->get();
+        $applications = $applications->orderBy('id', 'DESC')->paginate(60);
         // $applications = Application::orderBy('id', 'DESC')->paginate(60);
-        return view('dashboard',compact('applications','categories'));
+        return view('dashboard',compact('applications','categories'))->with('i', ($request->input('page', 1) - 1) * 60);
     }
 
     /**

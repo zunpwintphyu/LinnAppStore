@@ -25,7 +25,7 @@
 
     <div id="page-container" class="page-header-dark main-content-boxed">
 
-        <div class="block-content block-content-full bg-gd-lake-op text-center" style="padding: 2px !important;">
+        <div class="block-content block-content-full text-center" style="padding: 2px !important; background-color: #938D8D !important;">
             <p class="text-white font-size-h3 font-w300 mt-3 mb-0">
                 Linn App Store
             </p>
@@ -41,7 +41,7 @@
                             <div class="col-lg-12 col-xl-12">
                                 <div class="block block-themed" itemscope itemtype="http://schema.org/MobileApplication">
                                     <div class="block-header bg-light">
-                                        <h3 class="block-title"><a href="{{ url('/')}}">Home</a>  @if($applications->count()>0) » {{ $applications[0]->viewcategory->category_name }} @endif</h3>
+                                        <h3 class="block-title"><a href="{{ url('/')}}" style="color: #938D8D !important;">Home</a>  @if($applications->count()>0) » <span style="color: #365AF0 !important;">{{ $applications[0]->viewcategory->category_name }} @endif </span></h3>
                                     </div>
                                     <?php
                                         $keyword = isset($_GET['keyword'])?$_GET['keyword']:'';

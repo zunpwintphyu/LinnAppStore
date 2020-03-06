@@ -366,7 +366,7 @@
 <body style="background-color: #ffffff">
 
     <div id="page-container" class="page-header-dark main-content-boxed">
-        <div class="block-content block-content-full bg-gd-lake-op text-center" style="padding: 2px !important;">
+        <div class="block-content block-content-full text-center" style="padding: 2px !important; background-color: #938D8D !important;">
             <p class="text-white font-size-h3 font-w300 mt-3 mb-0">
                 Linn App Store
             </p>

@@ -42,7 +42,7 @@ class HomeController extends Controller
         if($keyword!=''){
             $applications = $applications->where('name','like','%'.$keyword.'%');
         }
-        $applications = $applications->get();
+        $applications = $applications->paginate(20);
 
 
         return view('application',compact('applications'));

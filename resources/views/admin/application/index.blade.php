@@ -49,7 +49,7 @@
         @csrf
         <div class="row">
             <div class="col-md-4">
-                <label class="col-sm-4 control-label">Category</label>
+                <label class="col-sm-5 control-label">Category</label>
                 <div class="form-group column {{ $errors->has('category_id')?'has-error':''}}">
                     <select name="category_id" class="form-control" id="category_id">
                         <optio value="">Select Category</option>
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <label class="col-sm-4 control-label">App Name</label>
+                <label class="col-sm-5 control-label">App Name</label>
                 <div class="form-group column {{ $errors->has('name')?'has-error':''}}">
                     <input type="text" name="name" class="form-control" id="name" style="color:blue;font-size:15px;"
                         placeholder="Name">
@@ -75,14 +75,14 @@
         <br>
         <div class="row">
             <div class="col-md-4">
-                <label class="control-label">File Upload</label>
+                <label class="col-sm-5 control-label">File Upload</label>
                 <div class="form-group column {{ $errors->has('file')?'has-error':''}}">
                     <input type="file" name="file" class="form-control" id="file" style="color:blue;font-size:15px;">
                     {!! $errors->first('file','<small>:message</small>')!!}
                 </div>
             </div>
             <div class="col-md-4">
-                <label class="control-label">Logo Upload</label>
+                <label class="col-sm-5 control-label">Logo Upload</label>
                 <div class="form-group column {{ $errors->has('logo')?'has-error':''}}">
                     <input type="file" name="logo" class="form-control" id="logo" style="color:blue;font-size:15px;">
                     {!! $errors->first('logo','<small>:message</small>')!!}
@@ -90,19 +90,40 @@
             </div>
             <br>
             <div class="col-md-1">
-                <label for=""></label>
-                <button class="btn btn-success btn-sm form-control" type="submit" onclick="hideProgress()">
+                <button class="btn btn-success btn-sm form-control" type="submit" onclick="hideProgress()" style="margin-top: 5px;">
                     <span class="glyphicon glyphicon-plus"></span>ADD</button>
             </div>
-            <div class="col-md-3"></div>
         </div> 
        <div id="progress">
             <div class="bar"></div >
             <div class="percent"></div >
         </div>
+        
     </form>
-    <br>
-    <!-- <hr> -->
+     <?php 
+        $category_id = isset($_GET['category_id'])?$_GET['category_id']:'';
+    ?>
+        <form method="GET" action="{{route('dashboard')}}">
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <input type="text" name="keyword" class="form-control float-right" placeholder="Search by application name..." style="border-radius: 5px;">
+                </div>
+                <div class="col-md-3 form-group">
+                    <select class="form-control" name="category_id" style="border-radius: 5px;">
+                          <option value="">Select by class...</option>
+                              @foreach($categories as $category)
+                                  <option value="{{$category->id}}" {{ ($category_id==  $category->id)?'selected':'' }}>
+                                        {{$category->category_name}}
+                                  </option>
+                              @endforeach
+                        </select>
+                    
+                </div>
+                <div class="col-md-1 form-group">
+                    <input type="submit" class="btn btn-primary" value="Search">
+                </div>
+            </div>
+        </form>
 
     <div class="card-body table-responsive p-0">
         <table class="table table-hover">
@@ -141,7 +162,7 @@
                             <a href="{{route('application.edit',$application->id)}}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit" title="Edit"></i></a>
                                  <a href="{{route('application.download',$application->id)}}" class="btn btn-sm btn-success"><i class="fas fa-download"></i> </a>
-                                <button class="btn btn-sm btn-danger btn-sm deleteRecord" data-id="{{$application->id }}">
+                            <button class="btn btn-sm btn-danger btn-sm deleteRecord" data-id="{{$application->id }}">
                                 <i class="fa fa-fw fa-trash" title="Delete"></i></button>
                         <!-- </form> -->
                     </td>

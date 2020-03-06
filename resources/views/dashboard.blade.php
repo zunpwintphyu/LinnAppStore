@@ -8,17 +8,29 @@
 
 @section('content_header')
 <div class="row">
-    <div>
-        <h3>Linn App Store</h3>
-    </div>
     <div class="col-lg-12 margin-tb">
         <div class="pull-right">
-            <i class="fas fa-fw fa-clock"> </i> {{ date('Y-m-d H:i:s') }}
+           Total: {{$applications->count()}}
         </div>
+    </div>
+    <div class="col-md-12"> 
+        <?php 
+            $keyword = (isset($_GET['keyword']))?$_GET['keyword']:'';
+        ?>  
+        <form method="GET" action="{{route('dashboard')}}">
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <input type="text" name="keyword" class="form-control float-right" placeholder="Search by application name..." value="{{$keyword}}" style="border-radius: 5px;margin-left: 25px;">
+                </div>
+                <div class="col-md-1 form-group">
+                    <input type="submit" class="btn btn-primary" value="Search">
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
-@stop
+@stop 
 
 
 

@@ -14,10 +14,17 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request);
-        $applications = Application::all();
-        // dd($applications);
-        return view('dashboard',compact('applications'));
+        // dd($request->keyword);
+        $applications =new Application();
+
+        $keyword = $request->keyword;
+        if($keyword!=''){
+            $applications = $applications->where('name','like','%'.$keyword.'%');
+        }
+
+        $applications = $applications->get();
+        $applications = Application::orderBy('id', 'DESC')->paginate(60);
+        return view('dashboard',compact('applications'))->with('i', ($request->input('page', 1) - 1) * 60);
     }
 
     /**

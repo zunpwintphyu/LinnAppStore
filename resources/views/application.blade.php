@@ -68,7 +68,7 @@
                                                             <img src="{{ asset('uploads/application/'.$app->logo) }}" width="100%" height="100%">
                                                         </div>
                                                         <div class="ml-3" style="width: 50%">
-                                                            <p class="font-w600 mb-0 app-title" style="color: #365AF0;">
+                                                            <p class="font-w600 mb-0 app-title" style="color: #365AF0; padding-top: 5px;">
                                                                 {{ $app->name}}
                                                             </p>
                                                         </div>
@@ -77,7 +77,7 @@
                                                                 <!-- <button type="button" class="block-app-download btn btn-outline-success btn-sm" style="display: block;">
                                                                     Download
                                                                 </button> -->
-                                                                <img src="{{asset('img/download.png')}}" alt="download">
+                                                                <img src="{{asset('img/download.png')}}" alt="download" width="70%">
                                                             </a>
                                                         </div>
                                                     </div>

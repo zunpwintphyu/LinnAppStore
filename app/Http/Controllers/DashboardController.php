@@ -23,8 +23,8 @@ class DashboardController extends Controller
         }
 
         $applications = $applications->get();
-        $applications = Application::orderBy('id', 'DESC')->paginate(60);
-        return view('dashboard',compact('applications'))->with('i', ($request->input('page', 1) - 1) * 60);
+        // $applications = Application::orderBy('id', 'DESC')->paginate(60);
+        return view('dashboard',compact('applications'));
     }
 
     /**

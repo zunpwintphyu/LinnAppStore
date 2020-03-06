@@ -11,6 +11,10 @@
 |
 */
 
+
+Route::get('/','HomeController@frontend')->name('frontend');
+Route::get('/application/{id}','HomeController@applicationByCat')->name('application');
+
 Auth::routes();
 
 Route::get('/home', function(){
@@ -19,7 +23,7 @@ Route::get('/home', function(){
 
 //Application Route
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/', function () {
+    Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
     Route::resource('/application','ApplicationController');

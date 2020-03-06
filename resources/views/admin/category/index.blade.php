@@ -58,9 +58,10 @@ $category_name= isset($_GET['category_name'])?$_GET['category_name']:'';
                         <td>
                             <img src="{{ asset('uploads/category/'.$cat->logo) }}" alt="image" style="width:10%;alignItem:center">
                         </td>
-                        <td>
+                        <td style="width: 30%">
                             <form action="{{ route('category.destroy',$cat->id)}}" method="post" onsubmit="return confirm('Do you want to delete?');">
-                                @csrf @method('DELETE')
+                                @csrf 
+                                @method('DELETE')
                                 <a class="btn btn-sm btn-warning" href="{{ route('category.edit',$cat->id)}}">
                                     <i class="fas fa-edit" title="Edit"></i></a>
                                 </a>

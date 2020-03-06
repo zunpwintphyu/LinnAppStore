@@ -393,7 +393,7 @@
                                                     @foreach($applications as $app)
 
                                                     <div class="col-6">
-                                                        <a class="block block-transparent block-link-pop text-center mb-0" href="{{ route('application') }}">
+                                                        <a class="block block-transparent block-link-pop text-center mb-0" href="#">
                                                             <div class="block-content block-content-full aspect-ratio-16-9 d-flex justify-content-center align-items-center" style="background-color: #e4ede9; margin-bottom: 10px;">
                                                                 <div>
                                                                     <!-- <i class="fab fa-google-play text-primary mr-1"></i> -->

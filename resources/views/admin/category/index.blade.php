@@ -44,7 +44,7 @@ $category_name= isset($_GET['category_name'])?$_GET['category_name']:'';
             </div>
             <br>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <table class="table table-hover">
                 <thead>
                     <th>Category Name</th>
@@ -53,31 +53,28 @@ $category_name= isset($_GET['category_name'])?$_GET['category_name']:'';
                 </thead>
                 <tbody>
                     @foreach ($categories as $cat )
-                    <tr>
-                        <td>{{ $cat->category_name }}</td>
-                        <td>
-                            <img src="{{ asset('uploads/category/'.$cat->logo) }}" alt="image" style="width:10%;alignItem:center">
-                        </td>
-                        <td>
-                            <form action="{{ route('category.destroy',$cat->id)}}" method="post" onsubmit="return confirm('Do you want to delete?');">
-                                @csrf @method('DELETE')
-                                <a class="btn btn-sm btn-warning" href="{{ route('category.edit',$cat->id)}}">
-                                    <i class="fas fa-edit" title="Edit"></i></a>
-                                </a>
-                                <button class="btn btn-sm btn-danger btn-sm" type="submit">
-                                    <i class="fa fa-fw fa-trash" title="Delete"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ $cat->category_name }}</td>
+                            <td>
+                                <img src="{{ asset('uploads/category/'.$cat->logo) }}" alt="image" style="width:50px;alignItem:center">
+                            </td>
+                            <td>
+                                <form action="{{ route('category.destroy',$cat->id)}}" method="post" onsubmit="return confirm('Do you want to delete?');">
+                                    @csrf @method('DELETE')
+                                    <a class="btn btn-sm btn-warning" href="{{ route('category.edit',$cat->id)}}">
+                                        <i class="fas fa-edit" title="Edit"></i></a>
+                                    </a>
+                                    <button class="btn btn-sm btn-danger btn-sm" type="submit">
+                                        <i class="fa fa-fw fa-trash" title="Delete"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                     @endforeach
 
                 </tbody>
             </table>
-
-            <div class="row">
-                {!! $categories->render() !!}
-            </div>
+            {{ $categories->links() }}
         </div>
     </div>
 </div>

@@ -16,10 +16,21 @@ class ApplicationController extends Controller
      */
     public function index(Request $request)
     {
+
         $categories = Category::all();
-        $applications = Application::orderBy('id', 'DESC')->paginate(5);
-        return view('admin.application.index', compact('applications', 'categories'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        $applications = new Application();
+        $count = $applications->count();
+        $keyword = $request->keyword;
+        if($keyword!=''){
+            $applications = $applications->where('name','like','%'.$keyword.'%');
+        }
+
+        $category_id = $request->category_id;
+        if($category_id!=''){
+            $applications = $applications->where('category_id',$category_id);
+        }
+        $applications = $applications->orderBy('id','DESC')->paginate('5');
+        return view('admin.application.index', compact('applications', 'categories','count'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**

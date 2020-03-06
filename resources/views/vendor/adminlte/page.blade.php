@@ -3,6 +3,20 @@
 @section('adminlte_css')
     <link rel="stylesheet"
           href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 'blue') . '.min.css')}} ">
+    <style>
+        .active{
+                background:#C6C2C2 !important;
+        }
+        .sidebar-menu li>a {
+            color: #ffffff !important;
+        }
+        .logo-mini, .logo-lg {
+             color: #ffffff !important;
+        }
+        .content-wrapper {
+            background-color: #ffffff !important;
+        }
+    </style>
     @stack('css')
     @yield('css')
 @stop
@@ -31,7 +45,7 @@
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse" >
                         <ul class="nav navbar-nav">
                             @each('adminlte::partials.menu-item-top-nav', $adminlte->menu(), 'item')
                         </ul>
@@ -94,7 +108,7 @@
 
         @if(config('adminlte.layout') != 'top-nav')
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar">
+        <aside class="main-sidebar" style="background-color: #938D8D !important;">
 
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">

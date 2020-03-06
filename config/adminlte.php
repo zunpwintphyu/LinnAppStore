@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'blue',
+    'skin' => '',
 
     /*
     |--------------------------------------------------------------------------
@@ -133,11 +133,11 @@ return [
         //     'search' => true,
         // ],
         // ['header' => 'main_navigation'],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
+        // [
+        //     'text' => 'blog',
+        //     'url'  => 'admin/blog',
+        //     'can'  => 'manage-blog',
+        // ],
         [
             'text'        => 'Dashboard',
             'url'         => 'admin',

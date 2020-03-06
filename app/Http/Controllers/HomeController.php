@@ -34,8 +34,17 @@ class HomeController extends Controller
         return view('frontend',compact('categories'));
     }
 
-    public function applicationByCat($id){
-        $applications = Application::with('viewcategory')->where('category_id',$id)->get();
+    public function applicationByCat(Request $request, $id)
+    {
+
+        $applications = Application::with('viewcategory')->where('category_id',$id);
+        $keyword = $request->keyword;
+        if($keyword!=''){
+            $applications = $applications->where('name','like','%'.$keyword.'%');
+        }
+        $applications = $applications->get();
+
+
         return view('application',compact('applications'));
     }
 }

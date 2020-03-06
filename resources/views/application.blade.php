@@ -44,11 +44,23 @@
                                     <div class="block-header bg-light">
                                         <h3 class="block-title"><a href="{{ url('/')}}">Home</a>  » {{ $applications[0]->viewcategory->category_name }}</h3>
                                     </div>
+                                    <?php
+                                        $keyword = isset($_GET['keyword'])?$_GET['keyword']:'';
+
+                                     ?>
+                                    
+                                    <form action="{{ route('application',$applications[0]->viewcategory->id)}}" method="get">
+                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                            <div class="block-content block-content-full d-flex  justify-content-between">
+                                                <input type="text" name="keyword" value="{{ $keyword }}" class="form-control" placeholder="Search.."> 
+                                            </div>
+                                        </div>
+                                    </form>
 
                                     <div class="block-content block-content-hover block-content-no-pad row mb-4">
                                         @foreach($applications as $app)
-                                        <div class="col-md-4 col-sm-4 col-xs-4">
-                                                <div class="block-content block-content-full d-flex  justify-content-between" style="background-color: #e4ede9">
+                                        <div class="col-md-4 col-sm-4 col-xs-4" style="padding-bottom: 10px">
+                                                <div class="block-content block-content-full d-flex  justify-content-between" >
                                                     <div class="item  block-app-image" style="width: 50%">
                                                         <img src="{{ asset('uploads/application/'.$app->logo) }}" width="100%" height="100%">
                                                     </div>
@@ -62,6 +74,7 @@
                                                             <button type="button" class="block-app-download btn btn-outline-success btn-sm" style="display: block;">
                                                                 Download
                                                             </button>
+                                                            <!-- <img src="{{asset('img/download.png')}}" alt="download"> -->
                                                         </a>
                                                     </div>
                                                 </div>

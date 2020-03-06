@@ -75,7 +75,8 @@
                                                         </div>
                                                         <div class="ml-3" style="width: 50%">
                                                             <p class="font-w600 mb-0 app-title" style="color: #365AF0; position: absolute;bottom: 35px;">
-                                                                {{ $app->name}}
+
+                                                                {{ str_limit($app->name, $limit = 15, $end = '...') }}
                                                             </p>
                                                         </div>
                                                         <div class="ml-3">

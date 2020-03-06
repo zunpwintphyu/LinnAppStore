@@ -9,7 +9,7 @@
     border-color: #d32535;
 }
 
-.progress {
+#progress {
     position: relative;
     width: 100%;
     /* border: 1px solid #7F98B2; */
@@ -49,7 +49,7 @@
         @csrf
         <div class="row">
             <div class="col-md-4">
-                <label class="col-sm-4 control-label">Category</span></label>
+                <label class="col-sm-4 control-label">Category</label>
                 <div class="form-group column {{ $errors->has('category_id')?'has-error':''}}">
                     <select name="category_id" class="form-control" id="category_id">
                         <optio value="">Select Category</option>
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <label class="col-sm-4 control-label">App Name</span></label>
+                <label class="col-sm-4 control-label">App Name</label>
                 <div class="form-group column {{ $errors->has('name')?'has-error':''}}">
                     <input type="text" name="name" class="form-control" id="name" style="color:blue;font-size:15px;"
                         placeholder="Name">
@@ -75,14 +75,14 @@
         <br>
         <div class="row">
             <div class="col-md-4">
-                <label class="col-sm-4 control-label">File Upload</span></label>
+                <label class="col-sm-4 control-label">File Upload</label>
                 <div class="form-group column {{ $errors->has('file')?'has-error':''}}">
                     <input type="file" name="file" class="form-control" id="file" style="color:blue;font-size:15px;">
                     {!! $errors->first('file','<small>:message</small>')!!}
                 </div>
             </div>
             <div class="col-md-4">
-                <label class="col-sm-4 control-label">Logo Upload</span></label>
+                <label class="col-sm-4 control-label">Logo Upload</label>
                 <div class="form-group column {{ $errors->has('logo')?'has-error':''}}">
                     <input type="file" name="logo" class="form-control" id="logo" style="color:blue;font-size:15px;">
                     {!! $errors->first('logo','<small>:message</small>')!!}
@@ -90,13 +90,13 @@
             </div>
             <br>
             <div class="col-md-1">
-                <button class="btn btn-success btn-sm form-control" type="submit"><span
-                        class="glyphicon glyphicon-plus"></span>ADD</button>
+                <button class="btn btn-success btn-sm form-control" type="submit" onclick="hideProgress()">
+                    <span class="glyphicon glyphicon-plus"></span>ADD</button>
             </div>
-        </div>
-       <div class="progress">
+        </div> 
+       <div id="progress">
             <div class="bar"></div >
-            <div class="percent">0%</div >
+            <div class="percent"></div >
         </div>
     </form>
     <br>
@@ -162,6 +162,35 @@ $(document).ready(function() {
         $(".alert-success").fadeOut(3000);
     }, 3000);
 
+    function validate(formData, jqForm, options) {
+        var form = jqForm[0];
+        
+         if (!form.name.value) {
+            alert("Please Enter App Name");
+            return false;
+        }
+
+        
+        if (!form.file.value) {
+            alert("Please Choose Apk File");
+            return false;
+        }
+       
+
+        if (!form.logo.value) {
+            alert("Please Choose Uploaded Logo");
+            return false;
+        }
+    }
+    
+    function hidePages() {
+        var x = document.getElementById("progress");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
  
     (function() {
  
@@ -170,7 +199,7 @@ $(document).ready(function() {
     var status = $('#status');
  
     $('form').ajaxForm({
-        // beforeSubmit: validate,
+        beforeSubmit: validate,
         beforeSend: function() {
             status.empty();
             var percentVal = '0%';

@@ -377,45 +377,25 @@
                 <div class="row">
 
                     <div class="col-lg-12 col-xl-12" >
+                            <div style="width: 100% !important;">
+                                <div class="row">
+                                    @foreach($categories as $cat)
 
-                        <div class="row">
-                            <div class="block block-rounded" style="width: 100% !important;">
-                                <div class="block-content block-content-full">
-
-                                    <div class="">
-
-                                        <div class="block-content tab-content">
-
-                                            <div class="tab-pane  active " id="cat-1" role="tabpanel">
-
-                                                <!-- <ul class="list-unstyled"> -->
-                                                <div class="row">
-                                                    @foreach($categories as $cat)
-
-                                                    <div class="col-6" style="background-color: #ffffff">
-                                                        <a class="block block-transparent block-link-pop text-center mb-0" href="{{ route('application',$cat->id)}}" style="text-decoration: none;">
-                                                            <div class="block-content block-content-full aspect-ratio-16-9 d-flex justify-content-center align-items-center" style="margin-bottom: 10px; border: 1px solid #ecf0f5; border-radius: 10px;">
-                                                                <div>
-                                                                    <!-- <i class="fab fa-google-play text-primary mr-1"></i> -->
-                                                                    <div class="font-w600 mt-2 text-uppercase" > <strong style="color: #365AF0; margin-top: 10; margin-bottom: 10px;">{{ $cat->category_name}} </strong></div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-
-                                                    @endforeach
-
-                                                  
+                                    <div class="col-6" style="background-color: #ffffff">
+                                        <a class="block block-transparent block-link-pop text-center mb-0" href="{{ route('application',$cat->id)}}" style="text-decoration: none;">
+                                            <div class="block-content block-content-full aspect-ratio-16-9 d-flex justify-content-center align-items-center" style="margin-bottom: 10px; border: 1px solid #ecf0f5; border-radius: 10px;">
+                                                <div>
+                                                    <!-- <i class="fab fa-google-play text-primary mr-1"></i> -->
+                                                    <div class="font-w600 mt-2 text-uppercase" > <strong style="color: #365AF0; margin-top: 10; margin-bottom: 10px;">{{ $cat->category_name}} </strong></div>
                                                 </div>
-                                                <!-- </ul> -->
                                             </div>
-                                            
-                                        </div>
-
+                                        </a>
                                     </div>
 
+                                    @endforeach
+
+                                  
                                 </div>
-                            </div>
                         </div>
 
                     </div>

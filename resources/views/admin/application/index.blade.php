@@ -44,13 +44,14 @@
 </div>
 @endif
 <div class="justify-content-center">
-    <form action="{{ route('application.store')}}" method="post" enctype="multipart/form-data" id="upload">
+    <form action="{{ route('application.store')}}" method="post" enctype="multipart/form-data">
+
         @csrf
         <div class="row">
             <div class="col-md-4">
                 <label class="col-sm-5 control-label">Category</label>
                 <div class="form-group column {{ $errors->has('category_id')?'has-error':''}}">
-                    <select name="category_id" class="form-control" id="category_id" style="border-radius: 5px;">
+                    <select name="category_id" class="form-control" id="category_id">
                         <optio value="">Select Category</option>
                             @foreach($categories as $category)
                             <option value="{{$category->id}}">
@@ -64,8 +65,8 @@
             <div class="col-md-4">
                 <label class="col-sm-5 control-label">App Name</label>
                 <div class="form-group column {{ $errors->has('name')?'has-error':''}}">
-                    <input type="text" name="name" class="form-control" id="name"
-                        placeholder="Name" style="border-radius: 5px;">
+                    <input type="text" name="name" class="form-control" id="name" style="color:blue;font-size:15px;"
+                        placeholder="Name">
                     {!! $errors->first('name','<small>:message</small>')!!}
                 </div>
             </div>
@@ -76,14 +77,14 @@
             <div class="col-md-4">
                 <label class="col-sm-5 control-label">File Upload</label>
                 <div class="form-group column {{ $errors->has('file')?'has-error':''}}">
-                    <input type="file" name="file" class="form-control" id="file" style="border-radius: 5px;">
+                    <input type="file" name="file" class="form-control" id="file" style="color:blue;font-size:15px;">
                     {!! $errors->first('file','<small>:message</small>')!!}
                 </div>
             </div>
             <div class="col-md-4">
                 <label class="col-sm-5 control-label">Logo Upload</label>
                 <div class="form-group column {{ $errors->has('logo')?'has-error':''}}">
-                    <input type="file" name="logo" class="form-control" id="logo" style="border-radius: 5px;">
+                    <input type="file" name="logo" class="form-control" id="logo" style="color:blue;font-size:15px;">
                     {!! $errors->first('logo','<small>:message</small>')!!}
                 </div>
             </div>
@@ -99,31 +100,7 @@
         </div>
         
     </form>
-     <?php 
-        $category_id = isset($_GET['category_id'])?$_GET['category_id']:'';
-        $keyword = isset($_GET['keyword'])?$_GET['keyword']:'';
-    ?>
-        <form method="GET" action="{{route('application.index')}}">
-            <div class="row">
-                <div class="col-md-3 form-group">
-                    <input type="text" name="keyword" class="form-control float-right" placeholder="Search by application name..." style="border-radius: 5px;" value="{{$keyword}}">
-                </div>
-                <div class="col-md-3 form-group">
-                    <select class="form-control" name="category_id" style="border-radius: 5px;">
-                          <option value="">Select by category...</option>
-                              @foreach($categories as $category)
-                                  <option value="{{$category->id}}" {{ ($category_id==  $category->id)?'selected':'' }}>
-                                        {{$category->category_name}}
-                                  </option>
-                              @endforeach
-                        </select>
-                    
-                </div>
-                <div class="col-md-1 form-group">
-                    <input type="submit" class="btn btn-primary" value="Search">
-                </div>
-            </div>
-        </form>
+        
 
     <div class="card-body table-responsive p-0">
         <table class="table table-hover">
@@ -155,6 +132,10 @@
                         {{$application->viewcategory->category_name}}
                     </td>
                     <td>
+                      <!--   <form action="{{ route('application.destroy', $application->id)}}" method="post"
+                            onsubmit="return confirm('Do you want to delete?');">
+                            @csrf
+                            @method('DELETE') -->
                             <a href="{{route('application.edit',$application->id)}}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit" title="Edit"></i></a>
                                  <a href="{{route('application.download',$application->id)}}" class="btn btn-sm btn-success"><i class="fas fa-download"></i> </a>
@@ -168,12 +149,7 @@
 
             </tbody>
         </table>
-        <div class="col-md-6"></div>
-        <div class="col-md-6">
-        Total: {{$count}}
-        </div>
-        {!! $applications->appends(request()->input())->links() !!}
-        
+        {{ $applications->links() }}
     </div>
     <input type="hidden" id="token" value="{{ csrf_token() }}">
 </div>
@@ -195,6 +171,7 @@ $(document).ready(function() {
 
     function validate(formData, jqForm, options) {
         var form = jqForm[0];
+
          if (!form.name.value) {
             alert("Please Enter App Name");
             return false;
@@ -213,13 +190,22 @@ $(document).ready(function() {
         }
     }
     
+    function hidePages() {
+        var x = document.getElementById("progress");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+ 
     (function() {
  
     var bar = $('.bar');
     var percent = $('.percent');
     var status = $('#status');
  
-    $('form#upload').ajaxForm({
+    $('form').ajaxForm({
         beforeSubmit: validate,
         beforeSend: function() {
             status.empty();

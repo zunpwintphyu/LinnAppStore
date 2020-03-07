@@ -60,7 +60,7 @@ $category_name = isset($_GET['category_name']) ? $_GET['category_name'] : '';
                             <td>{{ $cat->category_name }}</td>
                             <td>
                                 <img src="{{ asset('uploads/category/'.$cat->logo) }}" alt="image"
-                                    style="width:50px;alignItem:center">
+                                    style="width:50px;alignItem:center" accept="image/x-png,image/gif,image/jpeg" >
                             </td>
                             <td>
                                 <form action="{{ route('category.destroy',$cat->id)}}" method="post"

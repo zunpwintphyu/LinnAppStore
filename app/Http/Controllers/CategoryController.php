@@ -48,8 +48,10 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'category_name' => 'required',
-            'logo' => 'required',
+            // 'logo' => 'required',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
+        
         $logo = "";
         if ($file = $request->file('logo')) {
             $extension = $file->getClientOriginalExtension();
@@ -108,14 +110,21 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'category_name' => 'required',
-            'logo' => 'required'
-        ]);
-
         $category = Category::find($id);
 
         $logo = $category->logo;
+
+        if($logo=='' && ($request->file('logo')=='')){
+            $this->validate($request, [
+                'category_name' => 'required',
+                'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            ]);
+        
+        }else{
+            $this->validate($request, [
+                'category_name' => 'required'
+            ]);
+        }
 
         if ($file = $request->file('logo')) {
             $extension = $file->getClientOriginalExtension();

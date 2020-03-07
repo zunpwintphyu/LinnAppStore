@@ -57,9 +57,10 @@
         </div>
     </div>
     @endforeach
-    {!! $applications->appends(request()->input())->links() !!}
+   
 
 </div>
+ {!! $applications->appends(request()->input())->links() !!}
 @stop
 
 

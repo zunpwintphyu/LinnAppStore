@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-right">
-           Total: {{$applications->count()}}
+           Total: {{$count}}
         </div>
     </div>
     <div class="col-md-12"> 

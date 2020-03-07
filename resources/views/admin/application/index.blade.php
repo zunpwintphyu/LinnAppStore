@@ -44,7 +44,7 @@
 </div>
 @endif
 <div class="justify-content-center">
-    <form action="{{ route('application.store')}}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('application.store')}}" method="post" enctype="multipart/form-data" id="data">
 
         @csrf
         <div class="row">
@@ -100,7 +100,31 @@
         </div>
         
     </form>
-        
+        <?php 
+        $category_id = isset($_GET['category_id'])?$_GET['category_id']:'';
+        $keyword = isset($_GET['keyword'])?$_GET['keyword']:'';
+    ?>
+        <form method="GET" action="{{route('application.index')}}">
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <input type="text" name="keyword" class="form-control float-right" placeholder="Search by application name..." style="border-radius: 5px;" value="{{$keyword}}">
+                </div>
+                <div class="col-md-3 form-group">
+                    <select class="form-control" name="category_id" style="border-radius: 5px;">
+                          <option value="">Select by category...</option>
+                              @foreach($categories as $category)
+                                  <option value="{{$category->id}}" {{ ($category_id==  $category->id)?'selected':'' }}>
+                                        {{$category->category_name}}
+                                  </option>
+                              @endforeach
+                        </select>
+                    
+                </div>
+                <div class="col-md-1 form-group">
+                    <input type="submit" class="btn btn-primary" value="Search">
+                </div>
+            </div>
+        </form>
 
     <div class="card-body table-responsive p-0">
         <table class="table table-hover">
@@ -149,7 +173,7 @@
 
             </tbody>
         </table>
-        {{ $applications->links() }}
+        {!! $applications->appends(request()->input())->links() !!}
     </div>
     <input type="hidden" id="token" value="{{ csrf_token() }}">
 </div>
@@ -205,7 +229,7 @@ $(document).ready(function() {
     var percent = $('.percent');
     var status = $('#status');
  
-    $('form').ajaxForm({
+    $('form#data').ajaxForm({
         beforeSubmit: validate,
         beforeSend: function() {
             status.empty();

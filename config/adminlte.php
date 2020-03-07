@@ -146,7 +146,7 @@ return [
         [
             'text' => 'Category',
             'url'  => 'admin/category',
-            'icon' => 'fa fa-sitemap',
+            'icon' => 'fa fa-folder',
         ],
         [
             'text' => 'Add New App',

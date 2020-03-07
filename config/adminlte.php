@@ -146,12 +146,13 @@ return [
         [
             'text' => 'Category',
             'url'  => 'admin/category',
-            'icon' => 'fa fa-folder',
+            'icon' => 'fa fa-layer-group',
         ],
         [
-            'text' => 'Add New App',
+            'text' => '  Add New Application',
             'url'  => 'admin/application',
-            'icon' => 'fas fa-folder-plus',
+            'icon' => 'fab fa-google-play',
+            // 'icon' => 'fas fa-calendar-plus',
         ],
         // [
         //     'text'    => 'multilevel',

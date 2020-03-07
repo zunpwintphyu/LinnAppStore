@@ -386,6 +386,7 @@
                                             <div class="block-content block-content-full aspect-ratio-16-9 d-flex justify-content-center align-items-center" style="margin-bottom: 10px; border: 1px solid #ecf0f5; border-radius: 10px;">
                                                 <div>
                                                     <!-- <i class="fab fa-google-play text-primary mr-1"></i> -->
+                                                    <img src="{{ asset('uploads/category/'.$cat->logo) }}" alt="image" style="width:50px;alignItem:center">
                                                     <div class="font-w600 mt-2 text-uppercase" > <strong style="color: #365AF0; margin-top: 10; margin-bottom: 10px;">{{ $cat->category_name}} </strong></div>
                                                 </div>
                                             </div>

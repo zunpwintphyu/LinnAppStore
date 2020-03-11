@@ -52,7 +52,7 @@
                 <label class="col-sm-5 control-label">Category</label>
                 <div class="form-group column {{ $errors->has('category_id')?'has-error':''}}">
                     <select name="category_id" class="form-control" id="category_id">
-                        <optio value="">Select Category</option>
+                        <option value="">Select Category</option>
                             @foreach($categories as $category)
                             <option value="{{$category->id}}">
                                 {{$category->category_name}}

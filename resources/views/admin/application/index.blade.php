@@ -139,6 +139,9 @@
                     Category
                 </th>
                 <th>
+                    Size
+                </th>
+                <th>
                     Action
                 </th>
             </thead>
@@ -154,6 +157,13 @@
                     </td>
                     <td>
                         {{$application->viewcategory->category_name}}
+                    </td>
+                    <?php 
+                        $file_size = File::size(public_path('uploads/application/'.$application->file));
+                    ?>
+                    <td>
+       
+                        {{  number_format($file_size / 1048576,2) }} MB
                     </td>
                     <td>
                       <!--   <form action="{{ route('application.destroy', $application->id)}}" method="post"
@@ -249,9 +259,16 @@ $(document).ready(function() {
             percent.html(percentVal);
         },
         complete: function(xhr) {
-            status.html(xhr.responseText);
-            alert('Uploaded Successfully');
-            window.location.href = "application";
+             status.html(xhr.responseText);
+            var jsonResponse = JSON.parse(xhr.responseText);
+            console.log(jsonResponse);
+            if(jsonResponse.success){
+                alert('Uploaded Successfully');
+                window.location.href = "application";
+            }else{
+                alert('Uploaded Fail!');
+            }
+           
         }
     });
      
@@ -270,8 +287,13 @@ $(document).ready(function() {
                             "id": id,
                             "_token": token,
                         },
-                        success: function (){
-                            console.log("it Works");
+                        success: function (response){
+                          if(response.success){
+                                alert('Delete Successfully');
+                                window.location.href = "application";
+                            }else{
+                                alert('Delete Fail!');
+                            }
                         }
                     });
             }

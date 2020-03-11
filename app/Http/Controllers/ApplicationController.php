@@ -6,6 +6,7 @@ use App\Application;
 use App\Category;
 use Illuminate\Http\Request;
 use Validator;
+use File;
 
 class ApplicationController extends Controller
 {
@@ -66,7 +67,13 @@ class ApplicationController extends Controller
             'logo.required' => 'Please Choose Application Logo',
         ];
 
-         $this->validate($request, $rules, $customMessage);
+        $this->validate($request, $rules, $customMessage);
+         
+        $target_dir = public_path() . '/uploads/application/';
+
+        if(!File::isDirectory($target_dir)){
+            File::makeDirectory($target_dir, 0777, true, true);
+        }
 
 
         $fileup = "";
@@ -91,14 +98,18 @@ class ApplicationController extends Controller
             $photo = $safeName;
         }
 
-        $fileupload = Application::create([
+        $res = Application::create([
                     'category_id'=> $request->category_id,
                     'name'=>$request->name,
                     'file' =>$fileup,
                     'logo' => $photo
                 ]);
-        return redirect()->route('application.index')
-            ->with('success', 'Application  created successfully');
+        if($res){
+            return response()->json(['success'=>'true','message'=>'Upload Success!']);
+        }else{
+            return response()->json(['success'=>'false','message'=>'Upload fail!']);
+        }
+        
     }
 
     /**
@@ -153,6 +164,12 @@ class ApplicationController extends Controller
         ];
 
         $this->validate($request, $rules, $customMessage);
+        
+        $target_dir = public_path() . '/uploads/application/';
+
+        if(!File::isDirectory($target_dir)){
+            File::makeDirectory($target_dir, 0777, true, true);
+        }
 
         $structure = "uploads/application/";
         $photo = $application->logo;
@@ -202,12 +219,18 @@ class ApplicationController extends Controller
      */
     public function destroy(Request $request)
     {
-        Application::find($request->id)->delete();
-        return redirect()->route('application.index')
-            ->with('success', 'Application deleted successfully');
+        $res = Application::find($request->id)->delete();
+        // return redirect()->route('application.index')
+        //     ->with('success', 'Application deleted successfully');
         //  return response()->json([
         //     'success' => 'Application deleted successfully!'
         // ]);
+        
+        if($res){
+            return response()->json(['success'=>'true','message'=>'Delete Success!']);
+        }else{
+            return response()->json(['success'=>'false','message'=>'Delete fail!']);
+        }
 
 
     }
